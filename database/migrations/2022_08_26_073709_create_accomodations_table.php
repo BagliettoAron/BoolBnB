@@ -23,6 +23,7 @@ class CreateAccomodationsTable extends Migration
             ->onDelete('set null');
 
             $table->string('title');
+            $table->string('picture');
             $table->unsignedTinyInteger('number_of_rooms');
             $table->unsignedTinyInteger('number_of_beds');
             $table->unsignedTinyInteger('number_of_bathrooms');
