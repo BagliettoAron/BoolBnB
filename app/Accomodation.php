@@ -17,4 +17,8 @@ class Accomodation extends Model
     public function views() {
         return $this->hasMany('App\View');
     }
+
+    public function services() {
+        return $this->belongsToMany('App\Service');
+    }
 }
