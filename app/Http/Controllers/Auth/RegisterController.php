@@ -50,9 +50,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['string', 'max:255', 'nullable'],
-            'last_name' => ['string', 'max:255', 'nullable'],
-            'date_of_birth' => ['date', 'nullable'],
+            'name' => ['string', 'max:255', 'min:2', 'nullable'],
+            'last_name' => ['string', 'max:255', 'min:2', 'nullable'],
+            'date_of_birth' => ['date', 'nullable', 'before:-18 years'],
             // vogliamo mettere una validazione per evitare l'inserimento di date nel futuro con una funzione?
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
