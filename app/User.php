@@ -38,6 +38,6 @@ class User extends Authenticatable
     ];
 
     public function accomodation() {
-        return $this->belongsTo('App\Accomodation');
+        return $this->hasMany('App\Accomodation');
     }
 }
