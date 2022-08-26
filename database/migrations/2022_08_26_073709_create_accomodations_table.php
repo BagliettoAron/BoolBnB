@@ -15,6 +15,13 @@ class CreateAccomodationsTable extends Migration
     {
         Schema::create('accomodations', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('set null');
+
             $table->string('title');
             $table->unsignedTinyInteger('number_of_rooms');
             $table->unsignedTinyInteger('number_of_beds');
@@ -37,6 +44,9 @@ class CreateAccomodationsTable extends Migration
     public function down()
     {
 
-        Schema::dropIfExists('accomodations');
+        Schema::dropIfExists('accomodations'); 
+        
+        
+        
     }
 }
