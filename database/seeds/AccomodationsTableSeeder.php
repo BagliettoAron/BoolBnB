@@ -4,7 +4,7 @@ use App\Accomodation;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
-class AccomodationsTableSeeeder extends Seeder
+class AccomodationsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,7 @@ class AccomodationsTableSeeeder extends Seeder
     {
         for ($i=0; $i < 10; $i++) {
             $accomodation = new Accomodation();
+            // $accomodation->user_id = $faker->numberBetween(1,$i);
             $accomodation->title = $faker->sentence();
             $accomodation->picture = $faker->imageUrl(640, 480, 'house_picture', true);
             $accomodation->number_of_rooms = $faker->numberBetween(1, 15);
