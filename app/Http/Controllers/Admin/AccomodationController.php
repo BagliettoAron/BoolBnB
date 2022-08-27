@@ -16,8 +16,8 @@ class AccomodationController extends Controller
      */
     public function index()
     {
-        $loggedUser = Auth::user(); 
-        return view('admin.accomodations.index', compact('loggedUser'));
+        $logged_user = Auth::user(); 
+        return view('admin.accomodations.index', compact('logged_user'));
     }
 
     /**
@@ -49,7 +49,9 @@ class AccomodationController extends Controller
      */
     public function show($id)
     {
-        //
+        $this_accomodation = Accomodation::findOrFail($id);
+        return view('admin.accomodations.show', compact('this_accomodation'));
+        
     }
 
     /**
