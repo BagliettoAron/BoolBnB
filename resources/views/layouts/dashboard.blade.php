@@ -42,26 +42,26 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.home') }}">
                                 <i class="fa-solid fa-house"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('admin.posts.index') }}">
+                            <a class="nav-link active" href="{{ route('admin.accomodations.index') }}">
                                 <i class="fa-solid fa-file"></i>
-                                Tutti post
+                                Your Accomodations
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('admin.posts.create') }}">
+                            <a class="nav-link active" href="{{ route('admin.accomodations.create') }}">
                                 <i class="fa-solid fa-square-plus"></i>
-                                Crea un nuovo post
+                                Add Accomodation
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.categories.index') }}">
                                 <i class="fa-solid fa-stags"></i>
                                 Categorie
