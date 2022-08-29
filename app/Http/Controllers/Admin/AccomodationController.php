@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Accomodation;
 use App\Http\Controllers\Controller;
+use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +28,8 @@ class AccomodationController extends Controller
      */
     public function create()
     {
-        return view('admin.accomodations.create');
+        $services = Service::all();
+        return view('admin.accomodations.create', compact('services'));
     }
 
     /**
@@ -38,7 +40,7 @@ class AccomodationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -87,4 +89,8 @@ class AccomodationController extends Controller
     {
         //
     }
+
+    // private function getValidationRules() {
+
+    // }
 }

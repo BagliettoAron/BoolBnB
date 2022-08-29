@@ -3,21 +3,21 @@
 @section('content')
     <div class="container">
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <h2 class="pb-4">Add new accomodation</h2>
-    
-        <form action="" method="POST">
+
+        <form action="{{ route('admin.accomodations.store') }}" method="POST">
             @method('POST')
-            @csrf 
-    
+            @csrf
+
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
@@ -30,35 +30,51 @@
                 <label for="address">Address</label>
                 <input type="text" class="form-control" name="address" id="address" value="{{ old('address') }}">
             </div> --}}
-            <div class="form-group" id="address">
+            <div class="form-group" id="address" name="address">
                 <label>Address</label>
             </div>
             <div class="form-group">
                 <label for="number_of_rooms">Number of rooms</label>
-                <input type="number" class="form-control" name="number_of_rooms" id="number_of_rooms" value="{{ old('number_of_rooms') }}">
+                <input type="number" class="form-control" name="number_of_rooms" id="number_of_rooms"
+                    value="{{ old('number_of_rooms') }}">
             </div>
             <div class="form-group">
                 <label for="number_of_beds">Number of beds</label>
-                <input type="number" class="form-control" name="number_of_beds" id="number_of_beds" value="{{ old('number_of_beds') }}">
+                <input type="number" class="form-control" name="number_of_beds" id="number_of_beds"
+                    value="{{ old('number_of_beds') }}">
             </div>
             <div class="form-group">
                 <label for="number_of_bathrooms">Number of bathrooms</label>
-                <input type="number" class="form-control" name="number_of_bathrooms" id="number_of_bathrooms" value="{{ old('number_of_bathrooms') }}">
+                <input type="number" class="form-control" name="number_of_bathrooms" id="number_of_bathrooms"
+                    value="{{ old('number_of_bathrooms') }}">
             </div>
             <div class="form-group">
                 <label for="square_meters">Square meters</label>
-                <input type="number" class="form-control" name="square_meters" id="square_meters" value="{{ old('square_meters') }}">
+                <input type="number" class="form-control" name="square_meters" id="square_meters"
+                    value="{{ old('square_meters') }}">
             </div>
             <div class="form-group">
                 <label for="price">Price</label>
                 <input type="number" class="form-control" name="price" id="price" value="{{ old('price') }}">
             </div>
 
+
+            @foreach ($services as $service)
+                <div class="form-check">
+                    <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}" id="service-{{ $service->id }}" {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="service-{{ $service->id }}">
+                        {{$service->name}}
+                    </label>
+                </div>
+            @endforeach
+
+
+            <button type="submit" class="btn btn-primary">Add</button>
         </form>
     </div>
 
-     {{-- tom tom services --}}
-     <script>
+    {{-- tom tom services --}}
+    <script>
         var options = {
             searchOptions: {
                 key: 'xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7',
@@ -74,6 +90,6 @@
         var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
         document.getElementById('address').append(searchBoxHTML);
     </script>
-  
-    
+
+
 @endsection
