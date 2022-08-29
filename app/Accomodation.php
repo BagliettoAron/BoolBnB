@@ -25,4 +25,18 @@ class Accomodation extends Model
     public function sponsors() {
         return $this->belongsToMany('App\Sponsor');
     }
+
+    protected $fillable = [
+        'title',
+        'picture',
+        'number_of_rooms',
+        'number_of_beds',
+        'number_of_bathrooms',
+        'square_meters',
+        'price_per_night',
+        'visible',
+        // 'address',
+        'lat',
+        'lon'
+    ];
 }

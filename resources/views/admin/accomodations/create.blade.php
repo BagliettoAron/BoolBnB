@@ -26,11 +26,9 @@
                 <label for="picture">Picture</label>
                 <input type="text" class="form-control" name="picture" id="picture" value="{{ old('picture') }}">
             </div>
-            {{-- <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" class="form-control" name="address" id="address" value="{{ old('address') }}">
-            </div> --}}
-            <div class="form-group" id="address" name="address">
+
+            {{-- address --}}
+            <div class="form-group" id="address">
                 <label>Address</label>
             </div>
             <div class="form-group">
@@ -54,28 +52,40 @@
                     value="{{ old('square_meters') }}">
             </div>
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" name="price" id="price" value="{{ old('price') }}">
+                <label for="price_per_night">Price</label>
+                <input type="number" class="form-control" name="price_per_night" id="price_per_night" value="{{ old('price_per_night') }}">
+            </div>
+
+            <div class="services">
+                <label>Services</label>
+                @foreach ($services as $service)
+                    <div class="form-check">
+                        <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
+                            id="service-{{ $service->id }}"
+                            {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="service-{{ $service->id }}">
+                            {{ $service->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="visibility">
+                <label>Visibility</label>
+                <input type="radio" id="visible" name="visible" value="1"> 
+                <label for="visible">visible</label>
+                <input type="radio" name="visible" id="not-visible" value="0"> 
+                <label for="not-visible">not visible</label>
             </div>
 
 
-            @foreach ($services as $service)
-                <div class="form-check">
-                    <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}" id="service-{{ $service->id }}" {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
-                    <label class="form-check-label" for="service-{{ $service->id }}">
-                        {{$service->name}}
-                    </label>
-                </div>
-            @endforeach
-
-
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">Create accomodation</button>
         </form>
     </div>
 
     {{-- tom tom services --}}
     <script>
-        var options = {
+        const options = {
             searchOptions: {
                 key: 'xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7',
                 language: 'en-GB',
@@ -84,10 +94,10 @@
             autocompleteOptions: {
                 key: 'xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7',
                 language: 'en-GB'
-            }
+            },
         };
-        var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
-        var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+        const ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+        const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
         document.getElementById('address').append(searchBoxHTML);
     </script>
 

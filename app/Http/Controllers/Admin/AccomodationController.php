@@ -40,7 +40,21 @@ class AccomodationController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $data = $request->all();
+
+        $accomodation = new Accomodation();
+
+        // test
+        $accomodation->address = 'indirizzo test';
+        $accomodation->lat = '15';
+        $accomodation->lon = '16';
+        // test
+
+        $accomodation->fill($data);
+        $accomodation->save();
+
+        return redirect()->route('admin.accomodations.show', ['accomodation' => $accomodation->id]);
     }
 
     /**
