@@ -40,7 +40,8 @@ class AccomodationController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+
+        $request->validate($this->getValidationRules());
         $data = $request->all();
 
         $accomodation = new Accomodation();
@@ -104,7 +105,19 @@ class AccomodationController extends Controller
         //
     }
 
-    // private function getValidationRules() {
+    // test
 
-    // }
+    private function getValidationRules() {
+        return [
+            'title' => 'required', 
+            'picture' => 'required',
+            'number_of_rooms' => 'required|integer|min:1',
+            'number_of_beds' => 'required|integer|min:1',
+            'number_of_bathrooms' => 'required|integer|min:0',
+            'square_meters' => 'required|integer|min:20',
+            'price_per_night' => 'required|integer|min:10',
+            'visible' => 'required|boolean'
+        ];
+    }
+
 }

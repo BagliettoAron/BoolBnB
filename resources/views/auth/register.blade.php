@@ -91,8 +91,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Campi obbligatori *</label>
+                        <div class="form-group row py-3">
+                            <label class="col-md-4 col-form-label text-md-right">Required *</label>
                         </div>
 
 
