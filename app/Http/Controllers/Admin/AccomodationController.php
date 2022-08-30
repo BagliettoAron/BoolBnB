@@ -111,9 +111,9 @@ class AccomodationController extends Controller
         return [
             'title' => 'required', 
             'picture' => 'required',
-            'number_of_rooms' => 'required|integer|min:1',
-            'number_of_beds' => 'required|integer|min:1',
-            'number_of_bathrooms' => 'required|integer|min:0',
+            'number_of_rooms' => 'required|integer|min:1|max:255',
+            'number_of_beds' => 'required|integer|min:1|max:255',
+            'number_of_bathrooms' => 'required|integer|min:0|max:255',
             'square_meters' => 'required|integer|min:20',
             'price_per_night' => 'required|integer|min:10',
             'visible' => 'required|boolean'

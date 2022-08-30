@@ -33,17 +33,17 @@
             </div>
             <div class="form-group">
                 <label for="number_of_rooms">Number of rooms *</label>
-                <input type="number" class="form-control" name="number_of_rooms" required min="1" id="number_of_rooms"
+                <input type="number" class="form-control" name="number_of_rooms" required min="1" max="255"  id="number_of_rooms"
                     value="{{ old('number_of_rooms') }}">
             </div>
             <div class="form-group">
                 <label for="number_of_beds">Number of beds *</label>
-                <input type="number" class="form-control" name="number_of_beds" required min="1" id="number_of_beds"
+                <input type="number" class="form-control" name="number_of_beds" required min="1" max="255"  id="number_of_beds"
                     value="{{ old('number_of_beds') }}">
             </div>
             <div class="form-group">
                 <label for="number_of_bathrooms">Number of bathrooms *</label>
-                <input type="number" class="form-control" name="number_of_bathrooms" required min="0" id="number_of_bathrooms"
+                <input type="number" class="form-control" name="number_of_bathrooms" required min="0" max="255" id="number_of_bathrooms"
                     value="{{ old('number_of_bathrooms') }}">
             </div>
             <div class="form-group">
@@ -80,9 +80,7 @@
 
             <div class="form-group py-3">
                 <label for="price_per_night">Required *</label>
-               
             </div>
-
 
             <button type="submit" class="btn btn-primary">Create accomodation</button>
         </form>
