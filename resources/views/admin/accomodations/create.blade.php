@@ -28,7 +28,7 @@
             </div>
 
             {{-- address --}}
-            <div class="form-group" id="address">
+            <div class="form-group" id="address" name="address">
                 <label>Address</label>
             </div>
             <div class="form-group">
@@ -99,6 +99,10 @@
         const ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
         const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
         document.getElementById('address').append(searchBoxHTML);
+        // test
+        // const btn = document.querySelector('.btn');
+        // btn.addEventListener('click', address.value);
+        // console.log(btn);
     </script>
 
 
