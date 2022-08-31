@@ -33,9 +33,13 @@
                 <label>Address *</label>
                 <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
                     value="{{ old('address') }}">
-                    <div id="suggestions-container" class="mt-2" >
+                <div id="suggestions-container" class="mt-2" ></div>
+                <input type="text" class="form-control d-none" name="lat" id="lat"  required
+                value="{{ old('lat') }}">
 
-                    </div>
+                <input type="text" class="form-control d-none" name="lon" id="lon"  required
+                value="{{ old('lon') }}">
+
             </div>
 
             <div class="form-group">
@@ -109,21 +113,29 @@
             axios.get(linkApi).then(resp => {
                 const response = resp.data.results;
                 response.forEach(element => {
-                    
                     const divElement = document.createElement('div');
                     divElement.classList.add('address-result');
                     divElement.innerHTML = element.address.freeformAddress;
-                    divElement.setAttribute('onclick', 'selectedResult()');
+                    // divElement.setAttribute('onclick', 'selectedResult()');
                     document.getElementById('suggestions-container').append(divElement);
+                    divElement.addEventListener('click', function() {
+                        document.getElementById('address').value = element.address.freeformAddress;
+                        document.getElementById('lat').value = element.position.lat;
+                        document.getElementById('lon').value = element.position.lon;
+                        resultsContainer.innerHTML = '';
+
+
+                    });
                 });
                 
             })
         }
-
-        function selectedResult() {
-            console.log('test');
-        }
-    </script>
+        
+        const element = [];
+        
+        // function selectedResult() {
+        // }
+        </script>
 
 
 
