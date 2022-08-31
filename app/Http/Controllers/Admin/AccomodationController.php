@@ -111,7 +111,10 @@ class AccomodationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accomodation = Accomodation::findOrFail($id);
+        $accomodation->services()->sync([]);
+        $accomodation->delete();
+        return redirect()->route('admin.accomodations.index');
     }
 
     // test
