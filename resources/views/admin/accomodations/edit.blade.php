@@ -12,64 +12,64 @@
             </div>
         @endif
 
-        <h2 class="pb-4">Add new accomodation</h2>
+        <h2 class="pb-4">Edit this accomodation</h2>
 
-        <form action="{{ route('admin.accomodations.store') }}" method="POST">
-            @method('POST')
+        <form action="{{ route('admin.accomodations.update', ['accomodation' => $accomodation->id]) }}" method="POST">
+            @method('PUT')
             @csrf
 
             <div class="form-group">
                 <label for="title">Title *</label>
-                <input type="text" class="form-control" name="title" id="title" required value="{{ old('title') }}">
+                <input type="text" class="form-control" name="title" id="title" required value="{{ old('title') ? old('title') : $accomodation->title }}">
             </div>
             
             <div class="form-group">
                 <label for="picture">Picture *</label>
                 <input type="text" class="form-control" name="picture" id="picture" required
-                    value="{{ old('picture') }}">
+                    value="{{ old('picture') ? old('picture') : $accomodation->picture }}">
             </div>
 
             <div class="form-group" required>
                 <label>Address *</label>
                 <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
-                    value="{{ old('address') }}">
+                    value="{{ old('address') ? old('address') : $accomodation->address }}">
                 <div id="suggestions-container" class="mt-2" ></div>
                 <input type="text" class="form-control d-none" name="lat" id="lat"  required
-                value="{{ old('lat') }}">
+                value="{{ old('lat') ? old('lat') : $accomodation->lat }}">
 
                 <input type="text" class="form-control d-none" name="lon" id="lon"  required
-                value="{{ old('lon') }}">
+                value="{{ old('lon') ? old('lon') : $accomodation->lon }}">
 
             </div>
 
             <div class="form-group">
                 <label for="number_of_rooms">Number of rooms *</label>
                 <input type="number" class="form-control" name="number_of_rooms" required min="1" max="255"
-                    id="number_of_rooms" value="{{ old('number_of_rooms') }}">
+                    id="number_of_rooms" value="{{ old('number_of_rooms') ? old('number_of_rooms') : $accomodation->number_of_rooms }}">
             </div>
 
             <div class="form-group">
                 <label for="number_of_beds">Number of beds *</label>
                 <input type="number" class="form-control" name="number_of_beds" required min="1" max="255"
-                    id="number_of_beds" value="{{ old('number_of_beds') }}">
+                    id="number_of_beds" value="{{ old('number_of_beds') ? old('number_of_beds') : $accomodation->number_of_beds }}">
             </div>
 
             <div class="form-group">
                 <label for="number_of_bathrooms">Number of bathrooms *</label>
                 <input type="number" class="form-control" name="number_of_bathrooms" required min="0" max="255"
-                    id="number_of_bathrooms" value="{{ old('number_of_bathrooms') }}">
+                    id="number_of_bathrooms" value="{{ old('number_of_bathrooms') ? old('number_of_bathrooms') : $accomodation->number_of_bathrooms }}">
             </div>
 
             <div class="form-group">
                 <label for="square_meters">Square meters</label>
                 <input type="number" class="form-control" name="square_meters" required min="20" id="square_meters"
-                    value="{{ old('square_meters') }}">
+                    value="{{ old('square_meters') ? old('square_meters') : $accomodation->square_meters }}">
             </div>
 
             <div class="form-group">
                 <label for="price_per_night">Price *</label>
                 <input type="number" class="form-control" name="price_per_night" required id="price_per_night"
-                    min="10" value="{{ old('price_per_night') }}">
+                    min="10" value="{{ old('price_per_night') ? old('price_per_night') : $accomodation->price_per_night }}">
             </div>
 
             <div class="services">
@@ -77,8 +77,8 @@
                 @foreach ($services as $service)
                     <div class="form-check">
                         <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
-                            id="service-{{ $service->id }}"
-                            {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
+                            id="service-{{ $service->id }}" 
+                            {{ ($accomodation->services->contains($service) || in_array($service->id, old('services', []))) ? 'checked' : '' }}>
                         <label class="form-check-label" for="service-{{ $service->id }}">
                             {{ $service->name }}
                         </label>
@@ -98,7 +98,7 @@
                 <label for="price_per_night">Required *</label>
             </div>
 
-            <button type="submit" class="btn btn-primary">Create accomodation</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
     </div>
 

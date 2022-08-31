@@ -43,7 +43,6 @@ class AccomodationController extends Controller
         $request->validate($this->getValidationRules());
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
-        // dd($data);
 
         $accomodation = new Accomodation();
         $accomodation->fill($data);
@@ -82,7 +81,9 @@ class AccomodationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $accomodation = Accomodation::findOrFail($id);
+        $services = Service::all();
+        return view('admin.accomodations.edit', compact('services', 'accomodation'));
     }
 
     /**
@@ -94,7 +95,12 @@ class AccomodationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate($this->getValidationRules());
+        $data = $request->all();
+        $accomodation = Accomodation::findOrFail($id);
+        $accomodation->fill($data);
+        $accomodation->save();
+        return redirect()->route('admin.accomodations.show', ['accomodation' => $accomodation->id]);
     }
 
     /**
