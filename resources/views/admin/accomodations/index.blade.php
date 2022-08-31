@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <h2>lista delle tue accomodations</h2>
+    <h2 class="mb-3">Hi {{$logged_user->name}} {{$logged_user->last_name}}! These are your accomodations</h2>
     <div class="row row-cols-3">
 
         @forelse ($logged_user->accomodation as $accomodation)
@@ -20,7 +20,7 @@
         @empty
             <div class="col">
 
-                <h2>{{ $logged_user->name }} non ha appartamenti</h2>
+                <a class="btn btn-primary" href="{{route('admin.accomodations.create')}}">Add a new accomodation</a>
             </div>
         @endforelse
     </div>
