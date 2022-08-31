@@ -100,6 +100,9 @@ class AccomodationController extends Controller
         $accomodation = Accomodation::findOrFail($id);
         $accomodation->fill($data);
         $accomodation->save();
+        if(isset($data['services'])) {
+            $accomodation->services()->sync($data['services']);
+        }
         return redirect()->route('admin.accomodations.show', ['accomodation' => $accomodation->id]);
     }
 
