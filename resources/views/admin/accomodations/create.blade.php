@@ -14,7 +14,7 @@
 
         <h2 class="pb-4">Add new accomodation</h2>
 
-        <form action="{{ route('admin.accomodations.store') }}" method="POST">
+        <form action="{{ route('admin.accomodations.store') }}" method="POST" enctype="multipart/form-data">
             @method('POST')
             @csrf
 
@@ -28,6 +28,12 @@
                 <input type="text" class="form-control" name="picture" id="picture" required
                     value="{{ old('picture') }}">
             </div>
+
+            {{-- <div class="form-group">
+                <label for="picture">Picture *</label>
+                <input type="file" class="form-control" name="picture" id="picture" required
+                    value="{{ old('picture') }}">
+            </div> --}}
 
             <div class="form-group" required>
                 <label>Address *</label>

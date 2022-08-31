@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AccomodationController extends Controller
 {
@@ -43,6 +44,13 @@ class AccomodationController extends Controller
         $request->validate($this->getValidationRules());
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
+
+        //caricamento immagine
+        // if (isset($data['picture'])) {
+        //     //  Questa funzione salva il file caricato nell'input con name "image" nella cartella indicata. Inoltre, rinomina il file.
+        //     $img_path = Storage::put('picture', $data['picture']);
+        //     $data['picture'] = $img_path;
+        // }
 
         $accomodation = new Accomodation();
         $accomodation->fill($data);

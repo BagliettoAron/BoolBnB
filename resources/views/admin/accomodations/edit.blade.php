@@ -14,7 +14,7 @@
 
         <h2 class="pb-4">Edit this accomodation</h2>
 
-        <form action="{{ route('admin.accomodations.update', ['accomodation' => $accomodation->id]) }}" method="POST">
+        <form action="{{ route('admin.accomodations.update', ['accomodation' => $accomodation->id]) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
 
