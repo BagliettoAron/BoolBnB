@@ -10,9 +10,8 @@ class HomeController extends Controller
 {
     public function index() {
         
-        $user = Auth::user();
-        return view ('admin.home', compact('user'));
-        
+        $logged_user = Auth::user();
+        return view ('admin.accomodations.index', compact('logged_user'));
     }
 
 }

@@ -7,7 +7,7 @@
         @forelse ($logged_user->accomodation as $accomodation)
             <div class="col">
 
-                <div class="card mb-3" style="width: 18rem;">
+                <div class="card mb-3" style="width: 20rem;">
                     <img class="card-img-top" src="{{ $accomodation->picture }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $accomodation->title }}</h5>
