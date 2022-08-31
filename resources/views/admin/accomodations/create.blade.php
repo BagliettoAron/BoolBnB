@@ -24,27 +24,34 @@
             </div>
             <div class="form-group">
                 <label for="picture">Picture *</label>
-                <input type="text" class="form-control" name="picture" id="picture" required value="{{ old('picture') }}">
+                <input type="text" class="form-control" name="picture" id="picture" required
+                    value="{{ old('picture') }}">
             </div>
 
             {{-- address --}}
-            <div class="form-group" id="address" required name="address">
-                <label>Address</label>
+            <div class="form-group" required>
+                <label>Address *</label>
+                <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
+                    value="{{ old('address') }}">
+                    <div id="autocomplete" class="mt-2" >
+
+                    </div>
             </div>
+
             <div class="form-group">
                 <label for="number_of_rooms">Number of rooms *</label>
-                <input type="number" class="form-control" name="number_of_rooms" required min="1" max="255"  id="number_of_rooms"
-                    value="{{ old('number_of_rooms') }}">
+                <input type="number" class="form-control" name="number_of_rooms" required min="1" max="255"
+                    id="number_of_rooms" value="{{ old('number_of_rooms') }}">
             </div>
             <div class="form-group">
                 <label for="number_of_beds">Number of beds *</label>
-                <input type="number" class="form-control" name="number_of_beds" required min="1" max="255"  id="number_of_beds"
-                    value="{{ old('number_of_beds') }}">
+                <input type="number" class="form-control" name="number_of_beds" required min="1" max="255"
+                    id="number_of_beds" value="{{ old('number_of_beds') }}">
             </div>
             <div class="form-group">
                 <label for="number_of_bathrooms">Number of bathrooms *</label>
-                <input type="number" class="form-control" name="number_of_bathrooms" required min="0" max="255" id="number_of_bathrooms"
-                    value="{{ old('number_of_bathrooms') }}">
+                <input type="number" class="form-control" name="number_of_bathrooms" required min="0" max="255"
+                    id="number_of_bathrooms" value="{{ old('number_of_bathrooms') }}">
             </div>
             <div class="form-group">
                 <label for="square_meters">Square meters</label>
@@ -53,7 +60,8 @@
             </div>
             <div class="form-group">
                 <label for="price_per_night">Price *</label>
-                <input type="number" class="form-control" name="price_per_night" required id="price_per_night" min="10" value="{{ old('price_per_night') }}">
+                <input type="number" class="form-control" name="price_per_night" required id="price_per_night"
+                    min="10" value="{{ old('price_per_night') }}">
             </div>
 
             <div class="services">
@@ -72,9 +80,9 @@
 
             <div class="visibility">
                 <label>Visibility *</label>
-                <input type="radio" required id="visible" name="visible" value="1"> 
+                <input type="radio" required id="visible" name="visible" value="1">
                 <label for="visible">visible</label>
-                <input type="radio" name="visible" id="not-visible" value="0"> 
+                <input type="radio" name="visible" id="not-visible" value="0">
                 <label for="not-visible">not visible</label>
             </div>
 
@@ -86,27 +94,33 @@
         </form>
     </div>
 
-    {{-- tom tom services --}}
     <script>
-        const options = {
-            searchOptions: {
-                key: 'xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7',
-                language: 'en-GB',
-                limit: 5
-            },
-            autocompleteOptions: {
-                key: 'xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7',
-                language: 'en-GB'
-            },
-        };
-        const ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
-        const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-        document.getElementById('address').append(searchBoxHTML);
-        // test
-        // const btn = document.querySelector('.btn');
-        // btn.addEventListener('click', address.value);
-        // console.log(btn);
+        function searchAddress() {
+            window.axios.defaults.headers.common = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            };
+            const addressQuery = document.getElementById('address').value;
+            const linkApi =
+                `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
+            console.log(linkApi);
+            axios.get(linkApi).then(resp => {
+                const response = resp.data.results;
+                response.forEach(element => {
+                    const divElement = document.createElement('div');
+                    divElement.classList.add('address-result');
+                    divElement.innerHTML = element.address.freeformAddress;
+                    divElement.setAttribute('onclick', 'selectedResult()');
+                    document.getElementById('autocomplete').append(divElement);
+                });
+            })
+        }
+
+        function selectedResult() {
+            console.log('test');
+        }
     </script>
+
 
 
 @endsection
