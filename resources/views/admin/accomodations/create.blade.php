@@ -33,7 +33,7 @@
                 <label>Address *</label>
                 <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
                     value="{{ old('address') }}">
-                    <div id="autocomplete" class="mt-2" >
+                    <div id="suggestions-container" class="mt-2" >
 
                     </div>
             </div>
@@ -100,19 +100,23 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             };
+            const resultsContainer = document.getElementById('suggestions-container');
+            resultsContainer.innerHTML = '';
             const addressQuery = document.getElementById('address').value;
             const linkApi =
-                `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
+            `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
             console.log(linkApi);
             axios.get(linkApi).then(resp => {
                 const response = resp.data.results;
                 response.forEach(element => {
+                    
                     const divElement = document.createElement('div');
                     divElement.classList.add('address-result');
                     divElement.innerHTML = element.address.freeformAddress;
                     divElement.setAttribute('onclick', 'selectedResult()');
-                    document.getElementById('autocomplete').append(divElement);
+                    document.getElementById('suggestions-container').append(divElement);
                 });
+                
             })
         }
 
