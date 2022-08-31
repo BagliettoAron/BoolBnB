@@ -27,6 +27,7 @@ class Accomodation extends Model
     }
 
     protected $fillable = [
+        'user_id',
         'title',
         'picture',
         'number_of_rooms',
@@ -35,7 +36,7 @@ class Accomodation extends Model
         'square_meters',
         'price_per_night',
         'visible',
-        // 'address',
+        'address',
         'lat',
         'lon'
     ];

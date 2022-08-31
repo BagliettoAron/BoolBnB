@@ -17,10 +17,16 @@ class AccomodationController extends Controller
      */
     public function index()
     {
-        $logged_user = Auth::user(); 
-        return view('admin.accomodations.index', compact('logged_user'));
+        $logged_user = Auth::user();
+        // $accomodations = Accomodation::all();
+        // dd($accomodations);
+        // $user_accomodations = Accomodation::all()->where('id', Auth::user()->id);
+        // if($accomodations->id === $logged_user->id) {
+            // }
+            return view('admin.accomodations.index', compact('logged_user'));
+        // dd($user_accomodations->id);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -41,17 +47,20 @@ class AccomodationController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
+
+        // dd($request->all());
         $request->validate($this->getValidationRules());
         $data = $request->all();
 
         $accomodation = new Accomodation();
 
         // test
-        $accomodation->address = 'indirizzo test';
-        $accomodation->lat = '15';
-        $accomodation->lon = '16';
+        // $accomodation->address = 'indirizzo test';
+        // $accomodation->lat = '15';
+        // $accomodation->lon = '16';
         // test
+
+        $data['user_id'] = Auth::user()->id;
 
         $accomodation->fill($data);
         $accomodation->save();
