@@ -116,7 +116,6 @@
                     const divElement = document.createElement('div');
                     divElement.classList.add('address-result');
                     divElement.innerHTML = element.address.freeformAddress;
-                    // divElement.setAttribute('onclick', 'selectedResult()');
                     document.getElementById('suggestions-container').append(divElement);
                     divElement.addEventListener('click', function() {
                         document.getElementById('address').value = element.address.freeformAddress;
@@ -130,11 +129,6 @@
                 
             })
         }
-        
-        const element = [];
-        
-        // function selectedResult() {
-        // }
         </script>
 
 

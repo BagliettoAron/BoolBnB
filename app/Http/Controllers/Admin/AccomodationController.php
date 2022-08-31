@@ -18,15 +18,9 @@ class AccomodationController extends Controller
     public function index()
     {
         $logged_user = Auth::user();
-        // $accomodations = Accomodation::all();
-        // dd($accomodations);
-        // $user_accomodations = Accomodation::all()->where('id', Auth::user()->id);
-        // if($accomodations->id === $logged_user->id) {
-            // }
-            return view('admin.accomodations.index', compact('logged_user'));
-        // dd($user_accomodations->id);
+        return view('admin.accomodations.index', compact('logged_user'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -76,9 +70,14 @@ class AccomodationController extends Controller
      */
     public function show($id)
     {
+        $logged_user_id = Auth::user()->id;
         $this_accomodation = Accomodation::findOrFail($id);
-        return view('admin.accomodations.show', compact('this_accomodation'));
-        
+
+        if ($logged_user_id === $this_accomodation->user_id) {
+            return view('admin.accomodations.show', compact('this_accomodation'));
+        } else {
+            return view('admin.accomodations.error');
+        }
     }
 
     /**
@@ -117,9 +116,10 @@ class AccomodationController extends Controller
 
     // test
 
-    private function getValidationRules() {
+    private function getValidationRules()
+    {
         return [
-            'title' => 'required', 
+            'title' => 'required',
             'picture' => 'required',
             'number_of_rooms' => 'required|integer|min:1|max:255',
             'number_of_beds' => 'required|integer|min:1|max:255',
@@ -129,5 +129,4 @@ class AccomodationController extends Controller
             'visible' => 'required|boolean'
         ];
     }
-
 }
