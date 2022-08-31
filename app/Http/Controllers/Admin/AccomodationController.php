@@ -40,24 +40,18 @@ class AccomodationController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        // dd($request->all());
         $request->validate($this->getValidationRules());
         $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        // dd($data);
 
         $accomodation = new Accomodation();
-
-        // test
-        // $accomodation->address = 'indirizzo test';
-        // $accomodation->lat = '15';
-        // $accomodation->lon = '16';
-        // test
-
-        $data['user_id'] = Auth::user()->id;
-
         $accomodation->fill($data);
         $accomodation->save();
+
+        if(isset($data['services'])) {
+            $accomodation->services()->sync($data['services']);
+        }
 
         return redirect()->route('admin.accomodations.show', ['accomodation' => $accomodation->id]);
     }
