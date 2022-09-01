@@ -128,8 +128,6 @@ class AccomodationController extends Controller
         return redirect()->route('admin.accomodations.index');
     }
 
-    // test
-
     private function getValidationRules()
     {
         return [

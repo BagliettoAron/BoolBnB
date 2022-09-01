@@ -20,11 +20,10 @@
     <div class="d-flex">
         <a class="btn btn-primary mr-3"
             href="{{ route('admin.accomodations.edit', ['accomodation' => $this_accomodation->id]) }}">Modify</a>
-        <form action="{{ route('admin.accomodations.destroy', ['accomodation' => $this_accomodation->id]) }}"
-            method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+            <form action="{{ route('admin.accomodations.destroy', ['accomodation' => $this_accomodation->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete this accomodation?')">Delete</button>
+            </form>
     </div>
 @endsection

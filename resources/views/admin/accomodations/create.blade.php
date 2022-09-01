@@ -124,7 +124,8 @@
                 const response = resp.data.results;
                 response.forEach(element => {
                     const divElement = document.createElement('div');
-                    divElement.classList.add('address-result');
+                    divElement.classList.add('address-result', 'border');
+                    divElement.style.cursor= "pointer";
                     divElement.innerHTML = element.address.freeformAddress;
                     document.getElementById('suggestions-container').append(divElement);
                     divElement.addEventListener('click', function() {
@@ -132,8 +133,6 @@
                         document.getElementById('lat').value = element.position.lat;
                         document.getElementById('lon').value = element.position.lon;
                         resultsContainer.innerHTML = '';
-
-
                     });
                 });
                 
