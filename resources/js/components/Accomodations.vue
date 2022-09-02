@@ -2,27 +2,25 @@
     <div class="container">
         <h3>Accomodation's list</h3>
 
-        <form>
-
+        <form class="mb-5">
+            <h4 class="text-right mt-4">Search an accomodation</h4>
             <div class="form-group" required>
-                <input type="text" class="form-control" name="address" placeholder="Search" id="address" @keyup="searchAddress()" required>
+                <input type="text" class="form-control" name="address" placeholder="add address" id="address" @keyup="searchAddress()" required>
                 <div id="suggestions-container" class="mt-2" ></div>
                 <input type="text" class="form-control d-none" name="lat" id="lat"  required>
-                
-                <input type="text" class="form-control d-none" name="lon" id="lon"  required>
-                
+                <input type="text" class="form-control d-none" name="lon" id="lon"  required>  
             </div>
 
             <div class="form-group">
-                <label for="number_of_rooms">Number of rooms *</label>
-                <input type="number" class="form-control" name="number_of_rooms" required min="1" max="255"
-                    id="number_of_rooms">
+                <label for="number_of_rooms">Number of rooms</label>
+                <input type="number" class="form-control" name="number_of_rooms" placeholder="number of rooms" required min="1" max="255"
+                id="number_of_rooms">
             </div>
 
             <div class="form-group">
-                <label for="number_of_beds">Number of beds *</label>
-                <input type="number" class="form-control" name="number_of_beds" required min="1" max="255"
-                    id="number_of_beds">
+                <label for="number_of_beds">Number of beds</label>
+                <input type="number" class="form-control" name="number_of_beds"  placeholder="number of beds" required min="1" max="255"
+                id="number_of_beds">
             </div>
             
         </form>
@@ -139,12 +137,11 @@ export default {
                         document.getElementById('lat').value = element.position.lat;
                         document.getElementById('lon').value = element.position.lon;
                         resultsContainer.innerHTML = '';
+                        console.log(element.address.freeformAddress, element.position.lat, element.position.lon);
                     });
                 });
-                
             })
         }
-
     },
 };
 

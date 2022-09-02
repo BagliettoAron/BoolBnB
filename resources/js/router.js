@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 import Home from './pages/Home.vue'
 import About from './pages/About.vue'
+import Contact from './pages/Contact.vue'
 import AccomodationsContainer from './pages/AccomodationsContainer.vue'
 
 const router = new VueRouter({
@@ -19,6 +20,11 @@ const router = new VueRouter({
             path: '/about',
             name: 'about',
             component: About
+        },
+        {
+            path: '/contact',
+            name: 'contact',
+            component: Contact
         },
         {
             path: '/accomodationscontainer',
