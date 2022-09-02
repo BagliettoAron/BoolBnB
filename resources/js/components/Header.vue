@@ -26,6 +26,11 @@
                 >About <span class="sr-only">(current)</span></router-link
               >
             </li>
+            <li class="nav-item active">
+              <router-link class="nav-link" :to="{ name: 'accomodationscontainer' }"
+                >Accomodations <span class="sr-only">(current)</span></router-link
+              >
+            </li>
           </ul>
         </div>
       </div>

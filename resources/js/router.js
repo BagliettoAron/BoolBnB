@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 import Home from './pages/Home.vue'
 import About from './pages/About.vue'
+import AccomodationsContainer from './pages/AccomodationsContainer.vue'
 
 const router = new VueRouter({
     mode: 'history',
@@ -19,6 +20,11 @@ const router = new VueRouter({
             name: 'about',
             component: About
         },
+        {
+            path: '/accomodationscontainer',
+            name: 'accomodationscontainer',
+            component: AccomodationsContainer
+        },     
     ]
 })
 
