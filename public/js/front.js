@@ -1942,7 +1942,9 @@ __webpack_require__.r(__webpack_exports__);
       currentPage: 1,
       lastPage: 0,
       totalAccomodotations: 0,
-      accomodationsPerPage: 9
+      accomodationsPerPage: 9,
+      lat: 0,
+      lon: 0
     };
   },
   created: function created() {
@@ -1964,33 +1966,81 @@ __webpack_require__.r(__webpack_exports__);
         _this.totalAccomodations = resp.data.results.total;
       });
     },
+    // setCoordinates(lat, lon) {
+    //     this.lat = lat;
+    //     this.lon = lon;
+    // },
     searchAddress: function searchAddress() {
       window.axios.defaults.headers.common = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       };
-      var resultsContainer = document.getElementById('suggestions-container');
-      resultsContainer.innerHTML = '';
-      var addressQuery = document.getElementById('address').value;
+      var resultsContainer = document.getElementById("suggestions-container");
+      resultsContainer.innerHTML = "";
+      var addressQuery = document.getElementById("address").value;
       var linkApi = "https://api.tomtom.com/search/2/search/".concat(addressQuery, ".json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7");
-      console.log(linkApi);
+      var prova = this.setCoordinates(axiosLat, axiosLon);
       axios.get(linkApi).then(function (resp) {
         var response = resp.data.results;
         response.forEach(function (element) {
-          var divElement = document.createElement('div');
-          divElement.classList.add('address-result', 'border');
+          var divElement = document.createElement("div");
+          divElement.classList.add("address-result", "border");
           divElement.style.cursor = "pointer";
           divElement.innerHTML = element.address.freeformAddress;
-          document.getElementById('suggestions-container').append(divElement);
-          divElement.addEventListener('click', function () {
-            document.getElementById('address').value = element.address.freeformAddress;
-            document.getElementById('lat').value = element.position.lat;
-            document.getElementById('lon').value = element.position.lon;
-            resultsContainer.innerHTML = '';
-            console.log(element.address.freeformAddress, element.position.lat, element.position.lon);
+          document.getElementById("suggestions-container").append(divElement);
+          divElement.addEventListener("click", function () {
+            document.getElementById("address").value = element.address.freeformAddress; // document.getElementById("lat").value = element.position.lat;
+            // document.getElementById("lon").value = element.position.lon;
+            // this.axiosLat = element.position.lat;
+            // this.axiosLon = element.position.lon;
+
+            resultsContainer.innerHTML = "";
+            console.log(element.address.freeformAddress);
           });
         });
       });
+    },
+    checkIfInRadius: function checkIfInRadius() {
+      var spotCoordinates1 = [41.5408446218337, -8.612296123028727];
+      var spotCoordinates2 = [38.817459, -9.282218];
+      var center = {
+        lat: 41.536558,
+        lng: -8.627487
+      };
+      var radius = 20;
+      checkIfInside(spotCoordinates1);
+      checkIfInside(spotCoordinates2);
+
+      function checkIfInside(spotCoordinates) {
+        var newRadius = distanceInKmBetweenEarthCoordinates(spotCoordinates[0], spotCoordinates[1], center.lat, center.lng);
+        console.log(newRadius);
+
+        if (newRadius < radius) {
+          //point is inside the circle
+          console.log("inside");
+        } else if (newRadius > radius) {
+          //point is outside the circle
+          console.log("outside");
+        } else {
+          //point is on the circle
+          console.log("on the circle");
+        }
+      }
+
+      function distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
+        var earthRadiusKm = 6371;
+        var dLat = degreesToRadians(lat2 - lat1);
+        var dLon = degreesToRadians(lon2 - lon1);
+        lat1 = degreesToRadians(lat1);
+        lat2 = degreesToRadians(lat2);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return earthRadiusKm * c;
+      }
+
+      function degreesToRadians(degrees) {
+        return degrees * Math.PI / 180;
+      }
     }
   }
 });
@@ -2171,23 +2221,7 @@ var render = function render() {
     attrs: {
       id: "suggestions-container"
     }
-  }), _vm._v(" "), _c("input", {
-    staticClass: "form-control d-none",
-    attrs: {
-      type: "text",
-      name: "lat",
-      id: "lat",
-      required: ""
-    }
-  }), _vm._v(" "), _c("input", {
-    staticClass: "form-control d-none",
-    attrs: {
-      type: "text",
-      name: "lon",
-      id: "lon",
-      required: ""
-    }
-  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "row row-cols-3"
   }, _vm._l(_vm.accomodations, function (accomodation) {
     return _c("div", {
@@ -2237,7 +2271,7 @@ var render = function render() {
           return _vm.getAccomodations(n);
         }
       }
-    }, [_vm._v("\n                    " + _vm._s(n) + "\n                ")])]);
+    }, [_vm._v("\n          " + _vm._s(n) + "\n        ")])]);
   }), _vm._v(" "), _c("li", {
     staticClass: "page-item",
     "class": {
@@ -2253,54 +2287,10 @@ var render = function render() {
         return _vm.getAccomodations(_vm.currentPage + 1);
       }
     }
-  }, [_vm._v("Next\n                ")])])], 2)])]);
+  }, [_vm._v("Next\n        ")])])], 2)])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "number_of_rooms"
-    }
-  }, [_vm._v("Number of rooms")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "number",
-      name: "number_of_rooms",
-      placeholder: "number of rooms",
-      required: "",
-      min: "1",
-      max: "255",
-      id: "number_of_rooms"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "number_of_beds"
-    }
-  }, [_vm._v("Number of beds")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "number",
-      name: "number_of_beds",
-      placeholder: "number of beds",
-      required: "",
-      min: "1",
-      max: "255",
-      id: "number_of_beds"
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -6933,7 +6923,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.ms_container {\n  width: 80%;\n  margin: 0 auto;\n}\n", ""]);
+exports.push([module.i, "\n.ms_container {\r\n  width: 80%;\r\n  margin: 0 auto;\n}\r\n", ""]);
 
 // exports
 
@@ -54621,7 +54611,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/vittorioaquilino/Boolean/BoolBnB/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Corso Boolean\Desktop\BoolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
