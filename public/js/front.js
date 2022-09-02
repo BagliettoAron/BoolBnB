@@ -1963,6 +1963,33 @@ __webpack_require__.r(__webpack_exports__);
         _this.lastPage = resp.data.results.last_page;
         _this.totalAccomodations = resp.data.results.total;
       });
+    },
+    searchAddress: function searchAddress() {
+      window.axios.defaults.headers.common = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      };
+      var resultsContainer = document.getElementById('suggestions-container');
+      resultsContainer.innerHTML = '';
+      var addressQuery = document.getElementById('address').value;
+      var linkApi = "https://api.tomtom.com/search/2/search/".concat(addressQuery, ".json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7");
+      console.log(linkApi);
+      axios.get(linkApi).then(function (resp) {
+        var response = resp.data.results;
+        response.forEach(function (element) {
+          var divElement = document.createElement('div');
+          divElement.classList.add('address-result', 'border');
+          divElement.style.cursor = "pointer";
+          divElement.innerHTML = element.address.freeformAddress;
+          document.getElementById('suggestions-container').append(divElement);
+          divElement.addEventListener('click', function () {
+            document.getElementById('address').value = element.address.freeformAddress;
+            document.getElementById('lat').value = element.position.lat;
+            document.getElementById('lon').value = element.position.lon;
+            resultsContainer.innerHTML = '';
+          });
+        });
+      });
     }
   }
 });
@@ -2100,7 +2127,47 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("h3", [_vm._v("Accomodation's list")]), _vm._v(" "), _c("div", {
+  }, [_c("h3", [_vm._v("Accomodation's list")]), _vm._v(" "), _c("form", [_c("div", {
+    staticClass: "form-group",
+    attrs: {
+      required: ""
+    }
+  }, [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "address",
+      placeholder: "Search",
+      id: "address",
+      required: ""
+    },
+    on: {
+      keyup: function keyup($event) {
+        return _vm.searchAddress();
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "mt-2",
+    attrs: {
+      id: "suggestions-container"
+    }
+  }), _vm._v(" "), _c("input", {
+    staticClass: "form-control d-none",
+    attrs: {
+      type: "text",
+      name: "lat",
+      id: "lat",
+      required: ""
+    }
+  }), _vm._v(" "), _c("input", {
+    staticClass: "form-control d-none",
+    attrs: {
+      type: "text",
+      name: "lon",
+      id: "lon",
+      required: ""
+    }
+  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
     staticClass: "row row-cols-3"
   }, _vm._l(_vm.accomodations, function (accomodation) {
     return _c("div", {
@@ -2169,7 +2236,49 @@ var render = function render() {
   }, [_vm._v("Next\n                ")])])], 2)])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "number_of_rooms"
+    }
+  }, [_vm._v("Number of rooms *")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      name: "number_of_rooms",
+      required: "",
+      min: "1",
+      max: "255",
+      id: "number_of_rooms"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "number_of_beds"
+    }
+  }, [_vm._v("Number of beds *")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      name: "number_of_beds",
+      required: "",
+      min: "1",
+      max: "255",
+      id: "number_of_beds"
+    }
+  })]);
+}];
 render._withStripped = true;
 
 

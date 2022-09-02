@@ -1,6 +1,31 @@
 <template>
     <div class="container">
         <h3>Accomodation's list</h3>
+
+        <form>
+
+            <div class="form-group" required>
+                <input type="text" class="form-control" name="address" placeholder="Search" id="address" @keyup="searchAddress()" required>
+                <div id="suggestions-container" class="mt-2" ></div>
+                <input type="text" class="form-control d-none" name="lat" id="lat"  required>
+                
+                <input type="text" class="form-control d-none" name="lon" id="lon"  required>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="number_of_rooms">Number of rooms *</label>
+                <input type="number" class="form-control" name="number_of_rooms" required min="1" max="255"
+                    id="number_of_rooms">
+            </div>
+
+            <div class="form-group">
+                <label for="number_of_beds">Number of beds *</label>
+                <input type="number" class="form-control" name="number_of_beds" required min="1" max="255"
+                    id="number_of_beds">
+            </div>
+            
+        </form>
         <div class="row row-cols-3">
             <!-- accomodations singolo -->
             <div
@@ -89,8 +114,42 @@ export default {
                     this.totalAccomodations = resp.data.results.total;
                 });
         },
+
+        searchAddress() {
+            window.axios.defaults.headers.common = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            };
+            const resultsContainer = document.getElementById('suggestions-container');
+            resultsContainer.innerHTML = '';
+            const addressQuery = document.getElementById('address').value;
+            const linkApi =
+            `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
+            console.log(linkApi);
+            axios.get(linkApi).then(resp => {
+                const response = resp.data.results;
+                response.forEach(element => {
+                    const divElement = document.createElement('div');
+                    divElement.classList.add('address-result', 'border');
+                    divElement.style.cursor= "pointer";
+                    divElement.innerHTML = element.address.freeformAddress;
+                    document.getElementById('suggestions-container').append(divElement);
+                    divElement.addEventListener('click', function() {
+                        document.getElementById('address').value = element.address.freeformAddress;
+                        document.getElementById('lat').value = element.position.lat;
+                        document.getElementById('lon').value = element.position.lon;
+                        resultsContainer.innerHTML = '';
+                    });
+                });
+                
+            })
+        }
+
     },
 };
+
+
 </script>
+
 
 <style></style>
