@@ -2,7 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="ms_container">
       <div class="container-fluid">
-        <span class="navbar-brand">BoolBnB</span>
+        <i class="fas fa-hotel"></i>
+        <span class="navbar-brand ms_title">BoolBnB</span>
         <button
           class="navbar-toggler"
           type="button"
@@ -47,9 +48,20 @@
 export default {};
 </script>
   
-<style>
+<style lang="scss" scoped>
 .ms_container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+
+  .ms_title {
+    color: #ff395d;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  i {
+    color: #ff395d;
+    font-size: 1.3rem;
+  }
 }
 </style>
