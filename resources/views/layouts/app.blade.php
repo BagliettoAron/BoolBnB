@@ -24,6 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container" id="app-style">
+                <i class="fa-brands fa-airbnb"></i>
                 <a class="navbar-brand title" href="{{ url('/') }}">
                     BoolBnB
                 </a>

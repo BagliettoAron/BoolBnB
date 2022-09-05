@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>Accomodation's list</h3>
+    <!-- <h3>Accomodation's list</h3> -->
 
     <form class="mb-5">
       <h4 class="text-right mt-4">Search an accomodation</h4>

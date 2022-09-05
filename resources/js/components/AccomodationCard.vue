@@ -1,26 +1,62 @@
 <template>
-    <section>
-        <div class="card mb-3">
-            <div class="card-body">
-                <!-- <p>Categoria: {{ categoryName }}</p> -->
-                <h5 class="card-title">{{ accomodation.title }}</h5>
-            </div>
-            <div class="card-body">
-                <!-- <router-link :to="{ name: 'single-post', params: { slug: post.slug } }" class="card-link">Leggi post</router-link> -->
-            </div>
+  <section>
+    <div class="card">
+      <div class="card-image">
+        <div class="card-like">
+          <i class="fa-regular fa-heart"></i>
         </div>
-    </section>
+        <!-- <p>Categoria: {{ categoryName }}</p> -->
+      </div>
+    </div>
+    <div class="card-description">
+      <p class="card-title">{{ accomodation.title }}</p>
+      <small>{{ accomodation.price_per_night }}€ / notte</small>
+      <!-- <router-link :to="{ name: 'single-post', params: { slug: post.slug } }" class="card-link">Leggi post</router-link> -->
+    </div>
+  </section>
 </template>
 
 <script>
 export default {
-    name: "AccomodationsCard",
-    props: {
-        accomodation: Object
-    },
-}
-
+  name: "AccomodationsCard",
+  props: {
+    accomodation: Object,
+  },
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
+.card {
+  width: 300px;
+  height: 300px;
+  border-radius: 0.7rem;
+  margin-bottom: 1rem;
+  position: relative;
+
+  &-like {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    i {
+      font-size: 1.3rem;
+    }
+
+    i:hover {
+      color: #ff385d;
+    }
+  }
+
+  &-description {
+    margin-bottom: 1.5rem;
+
+    h6 {
+      font-weight: bold;
+    }
+  }
+
+  &-title {
+    margin: 0;
+  }
+}
 </style>

@@ -30,7 +30,7 @@ const router = new VueRouter({
             path: '/accomodationscontainer',
             name: 'accomodationscontainer',
             component: AccomodationsContainer
-        },     
+        },      
     ]
 })
 
