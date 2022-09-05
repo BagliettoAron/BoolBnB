@@ -7,6 +7,8 @@ import Home from './pages/Home.vue'
 import About from './pages/About.vue'
 import Contact from './pages/Contact.vue'
 import AccomodationsContainer from './pages/AccomodationsContainer.vue'
+import SearchAccomodations from './pages/SearchAccomodations.vue'
+
 
 const router = new VueRouter({
     mode: 'history',
@@ -30,6 +32,11 @@ const router = new VueRouter({
             path: '/accomodationscontainer',
             name: 'accomodationscontainer',
             component: AccomodationsContainer
+        },    
+        {
+            path: '/searchaccomodations',
+            name: 'searchaccomodations',
+            component: SearchAccomodations
         },      
     ]
 })
