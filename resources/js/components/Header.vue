@@ -1,8 +1,9 @@
 <template>
+<header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="ms_container">
       <div class="container-fluid">
-        <i class="fas fa-hotel"></i>
+        <i class="fa-brands fa-airbnb"></i>
         <span class="navbar-brand ms_title">BoolBnB</span>
         <button
           class="navbar-toggler"
@@ -47,26 +48,34 @@
       </div>
     </div>
   </nav>
+</header>
 </template>
   
 <script>
-export default {};
+export default {
+    name: "Header",
+};
 </script>
   
 <style lang="scss" scoped>
+header {
+  border-bottom: 1px solid lightgray;
+  height: 80px;
+  line-height: 40px;
+  margin-bottom: 2rem;
+}
 .ms_container {
   width: 90%;
   margin: 0 auto;
 
   .ms_title {
-    color: #ff395d;
-    font-size: 1.5rem;
-    font-weight: bold;
+    color: #ff385d;
+    font-size: 1.2rem;
   }
 
   i {
     color: #ff395d;
-    font-size: 1.3rem;
+    font-size: 1.9rem;
   }
 }
 </style>

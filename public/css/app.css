@@ -10515,6 +10515,11 @@ readers do not read off random characters that represent icons */
   color: #ff395d;
 }
 
+#app-style i {
+  color: #ff395d;
+  font-size: 1.9rem;
+}
+
 /*!
  * Bootstrap v4.6.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
