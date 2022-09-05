@@ -1942,9 +1942,7 @@ __webpack_require__.r(__webpack_exports__);
       currentPage: 1,
       lastPage: 0,
       totalAccomodotations: 0,
-      accomodationsPerPage: 9,
-      lat: 0,
-      lon: 0
+      accomodationsPerPage: 9
     };
   },
   created: function created() {
@@ -1965,82 +1963,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.lastPage = resp.data.results.last_page;
         _this.totalAccomodations = resp.data.results.total;
       });
-    },
-    // setCoordinates(lat, lon) {
-    //     this.lat = lat;
-    //     this.lon = lon;
-    // },
-    searchAddress: function searchAddress() {
-      window.axios.defaults.headers.common = {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      };
-      var resultsContainer = document.getElementById("suggestions-container");
-      resultsContainer.innerHTML = "";
-      var addressQuery = document.getElementById("address").value;
-      var linkApi = "https://api.tomtom.com/search/2/search/".concat(addressQuery, ".json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7");
-      var prova = this.setCoordinates(axiosLat, axiosLon);
-      axios.get(linkApi).then(function (resp) {
-        var response = resp.data.results;
-        response.forEach(function (element) {
-          var divElement = document.createElement("div");
-          divElement.classList.add("address-result", "border");
-          divElement.style.cursor = "pointer";
-          divElement.innerHTML = element.address.freeformAddress;
-          document.getElementById("suggestions-container").append(divElement);
-          divElement.addEventListener("click", function () {
-            document.getElementById("address").value = element.address.freeformAddress; // document.getElementById("lat").value = element.position.lat;
-            // document.getElementById("lon").value = element.position.lon;
-            // this.axiosLat = element.position.lat;
-            // this.axiosLon = element.position.lon;
-
-            resultsContainer.innerHTML = "";
-            console.log(element.address.freeformAddress);
-          });
-        });
-      });
-    },
-    checkIfInRadius: function checkIfInRadius() {
-      var spotCoordinates1 = [41.5408446218337, -8.612296123028727];
-      var spotCoordinates2 = [38.817459, -9.282218];
-      var center = {
-        lat: 41.536558,
-        lng: -8.627487
-      };
-      var radius = 20;
-      checkIfInside(spotCoordinates1);
-      checkIfInside(spotCoordinates2);
-
-      function checkIfInside(spotCoordinates) {
-        var newRadius = distanceInKmBetweenEarthCoordinates(spotCoordinates[0], spotCoordinates[1], center.lat, center.lng);
-        console.log(newRadius);
-
-        if (newRadius < radius) {
-          //point is inside the circle
-          console.log("inside");
-        } else if (newRadius > radius) {
-          //point is outside the circle
-          console.log("outside");
-        } else {
-          //point is on the circle
-          console.log("on the circle");
-        }
-      }
-
-      function distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
-        var earthRadiusKm = 6371;
-        var dLat = degreesToRadians(lat2 - lat1);
-        var dLon = degreesToRadians(lon2 - lon1);
-        lat1 = degreesToRadians(lat1);
-        lat2 = degreesToRadians(lat2);
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return earthRadiusKm * c;
-      }
-
-      function degreesToRadians(degrees) {
-        return degrees * Math.PI / 180;
-      }
     }
   }
 });
@@ -2124,6 +2046,63 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/SearchAccomodations.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/SearchAccomodations.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_AccomodationCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/AccomodationCard.vue */ "./resources/js/components/AccomodationCard.vue");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "searchaccomodations",
+  components: {
+    AccomodationCard: _components_AccomodationCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: {
+    searchAddress: function searchAddress() {
+      window.axios.defaults.headers.common = {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      };
+      var resultsContainer = document.getElementById("suggestions-container");
+      resultsContainer.innerHTML = "";
+      var addressQuery = document.getElementById("address").value;
+      var linkApi = "https://api.tomtom.com/search/2/search/".concat(addressQuery, ".json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7");
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(linkApi).then(function (resp) {
+        var response = resp.data.results;
+        response.forEach(function (element) {
+          var divElement = document.createElement("div");
+          divElement.classList.add("address-result", "border");
+          divElement.style.cursor = "pointer";
+          divElement.innerHTML = element.address.freeformAddress;
+          document.getElementById("suggestions-container").append(divElement);
+          divElement.addEventListener("click", function () {
+            document.getElementById("address").value = element.address.freeformAddress;
+            resultsContainer.innerHTML = "";
+            var lat = element.position.lat;
+            var lon = element.position.lon;
+            axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://api.tomtom.com/search/2/search/via roma.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7").then(function (resp) {
+              console.log(resp);
+            });
+            console.log(element.address.freeformAddress);
+            console.log(element.position.lat);
+            console.log(element.position.lon);
+          });
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=script&lang=js& ***!
@@ -2193,35 +2172,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("h3", [_vm._v("Accomodation's list")]), _vm._v(" "), _c("form", {
-    staticClass: "mb-5"
-  }, [_c("h4", {
-    staticClass: "text-right mt-4"
-  }, [_vm._v("Search an accomodation")]), _vm._v(" "), _c("div", {
-    staticClass: "form-group",
-    attrs: {
-      required: ""
-    }
-  }, [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      name: "address",
-      placeholder: "add address",
-      id: "address",
-      required: ""
-    },
-    on: {
-      keyup: function keyup($event) {
-        return _vm.searchAddress();
-      }
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "mt-2",
-    attrs: {
-      id: "suggestions-container"
-    }
-  })])]), _vm._v(" "), _c("div", {
+  }, [_c("h3", [_vm._v("Accomodation's list")]), _vm._v(" "), _c("div", {
     staticClass: "row row-cols-3"
   }, _vm._l(_vm.accomodations, function (accomodation) {
     return _c("div", {
@@ -2372,6 +2323,17 @@ var render = function render() {
     }
   }, [_vm._v("Accomodations "), _c("span", {
     staticClass: "sr-only"
+  }, [_vm._v("(current)")])])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item active"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: {
+        name: "searchaccomodations"
+      }
+    }
+  }, [_vm._v("Advanced search"), _c("span", {
+    staticClass: "sr-only"
   }, [_vm._v("(current)")])])], 1)])])])])]);
 };
 
@@ -2518,6 +2480,60 @@ var staticRenderFns = [function () {
     staticClass: "text-center my-3"
   }, [_vm._v("Questa è la home")])]);
 }];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/SearchAccomodations.vue?vue&type=template&id=c383acde&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/SearchAccomodations.vue?vue&type=template&id=c383acde& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "container"
+  }, [_c("form", {
+    staticClass: "mb-5"
+  }, [_c("h4", {
+    staticClass: "text-right mt-4"
+  }, [_vm._v("Search an accomodation")]), _vm._v(" "), _c("div", {
+    staticClass: "form-group",
+    attrs: {
+      required: ""
+    }
+  }, [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "address",
+      placeholder: "add address",
+      id: "address",
+      required: ""
+    },
+    on: {
+      keyup: function keyup($event) {
+        return _vm.searchAddress();
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "mt-2",
+    attrs: {
+      id: "suggestions-container"
+    }
+  })])])]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -54490,6 +54506,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/SearchAccomodations.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/SearchAccomodations.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SearchAccomodations_vue_vue_type_template_id_c383acde___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchAccomodations.vue?vue&type=template&id=c383acde& */ "./resources/js/pages/SearchAccomodations.vue?vue&type=template&id=c383acde&");
+/* harmony import */ var _SearchAccomodations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchAccomodations.vue?vue&type=script&lang=js& */ "./resources/js/pages/SearchAccomodations.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SearchAccomodations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SearchAccomodations_vue_vue_type_template_id_c383acde___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SearchAccomodations_vue_vue_type_template_id_c383acde___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/SearchAccomodations.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/SearchAccomodations.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/pages/SearchAccomodations.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAccomodations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchAccomodations.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/SearchAccomodations.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAccomodations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/SearchAccomodations.vue?vue&type=template&id=c383acde&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/pages/SearchAccomodations.vue?vue&type=template&id=c383acde& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAccomodations_vue_vue_type_template_id_c383acde___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchAccomodations.vue?vue&type=template&id=c383acde& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/SearchAccomodations.vue?vue&type=template&id=c383acde&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAccomodations_vue_vue_type_template_id_c383acde___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAccomodations_vue_vue_type_template_id_c383acde___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/router.js":
 /*!********************************!*\
   !*** ./resources/js/router.js ***!
@@ -54506,9 +54591,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_About_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/About.vue */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Contact_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Contact.vue */ "./resources/js/pages/Contact.vue");
 /* harmony import */ var _pages_AccomodationsContainer_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/AccomodationsContainer.vue */ "./resources/js/pages/AccomodationsContainer.vue");
+/* harmony import */ var _pages_SearchAccomodations_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/SearchAccomodations.vue */ "./resources/js/pages/SearchAccomodations.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -54531,6 +54618,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/accomodationscontainer',
     name: 'accomodationscontainer',
     component: _pages_AccomodationsContainer_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, {
+    path: '/searchaccomodations',
+    name: 'searchaccomodations',
+    component: _pages_SearchAccomodations_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
@@ -54613,7 +54704,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/vittorioaquilino/Boolean/BoolBnB/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Boolean\BoolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
