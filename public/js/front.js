@@ -2664,7 +2664,7 @@ var render = function render() {
         return _vm.searchAddress();
       }
     }
-  }), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("ul", {
     staticClass: "mt-2",
     attrs: {
       id: "suggestions-container"
@@ -55046,7 +55046,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\39329\Boolean Laravel\BoolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Corso Boolean\Desktop\BoolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

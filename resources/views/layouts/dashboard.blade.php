@@ -20,22 +20,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    {{-- Axios --}}
-=======
     {{-- CDN Axios --}}
->>>>>>> 6e24bf3e1979a78b7e4bc031162f1e55e6e650d1
-=======
-    {{-- CDN Axios --}}
->>>>>>> 6e24bf3e1979a78b7e4bc031162f1e55e6e650d1
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Bool BnB</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BoolBnB</a>
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
