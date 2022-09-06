@@ -2201,35 +2201,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("form", {
-    staticClass: "mb-5"
-  }, [_c("h4", {
-    staticClass: "text-right mt-4"
-  }, [_vm._v("Search an accomodation")]), _vm._v(" "), _c("div", {
-    staticClass: "form-group",
-    attrs: {
-      required: ""
-    }
-  }, [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      name: "address",
-      placeholder: "add address",
-      id: "address",
-      required: ""
-    },
-    on: {
-      keyup: function keyup($event) {
-        return _vm.searchAddress();
-      }
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "mt-2",
-    attrs: {
-      id: "suggestions-container"
-    }
-  })])]), _vm._v(" "), _c("div", {
+  }, [_c("h3", [_vm._v("Accomodation's list")]), _vm._v(" "), _c("div", {
     staticClass: "row row-cols-3"
   }, _vm._l(_vm.accomodations, function (accomodation) {
     return _c("div", {
@@ -2487,6 +2459,17 @@ var render = function render() {
       }
     }
   }, [_vm._v("Accomodations "), _c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("(current)")])])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item active"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: {
+        name: "searchaccomodations"
+      }
+    }
+  }, [_vm._v("Advanced search"), _c("span", {
     staticClass: "sr-only"
   }, [_vm._v("(current)")])])], 1)])])])])])]);
 };
@@ -55063,7 +55046,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Boolean\BoolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /home/lorenzo/Documenti/Boolean/progetto-finane/BoolBnB/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

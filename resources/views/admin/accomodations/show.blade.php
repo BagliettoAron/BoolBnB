@@ -15,6 +15,12 @@
             nessuno
         @endforelse
     </p>
+    <p>
+        @if ($this_accomodation->visible)
+            Visibile
+        @else 
+            Non visibile
+        @endif
     <h5>Price per night: €{{ $this_accomodation->price_per_night }}</h5>
 
     <div class="d-flex">

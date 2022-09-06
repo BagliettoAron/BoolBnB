@@ -92,11 +92,10 @@
             </div>
 
             <div class="visibility">
-                <label>Visibility *</label>
-                <input type="radio" required id="visible" name="visible" value="1">
+                <label>Visibility</label>
+                <input type="hidden" id="visible"  name="visible" value="0">
+                <input type="checkbox" id="visible" name="visible" value="1"  {{ $accomodation->visible  ?  'checked'  : '' }}>
                 <label for="visible">visible</label>
-                <input type="radio" name="visible" id="not-visible" value="0">
-                <label for="not-visible">not visible</label>
             </div>
 
             <div class="form-group py-3">
