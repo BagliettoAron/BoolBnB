@@ -25,8 +25,7 @@
             
             <div class="form-group">
                 <label for="picture">Picture *</label>
-                <input type="text" class="form-control" name="picture" id="picture" required
-                    value="{{ old('picture') }}">
+                <input type="file" name="picture" id="picture">
             </div>
 
             {{-- <div class="form-group">
