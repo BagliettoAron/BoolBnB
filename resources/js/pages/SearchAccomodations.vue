@@ -12,7 +12,7 @@
                     @keyup="searchAddress()"
                     required
                 />
-                <div id="suggestions-container" class="mt-2"></div>
+                <ul id="suggestions-container" class="mt-2"></ul>
             </div>
         </form>
     </div>

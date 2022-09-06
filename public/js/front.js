@@ -2471,6 +2471,17 @@ var render = function render() {
     }
   }, [_vm._v("Advanced search"), _c("span", {
     staticClass: "sr-only"
+  }, [_vm._v("(current)")])])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item active"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: {
+        name: "searchaccomodations"
+      }
+    }
+  }, [_vm._v("Advanced search"), _c("span", {
+    staticClass: "sr-only"
   }, [_vm._v("(current)")])])], 1)])])])])])]);
 };
 
@@ -2664,7 +2675,7 @@ var render = function render() {
         return _vm.searchAddress();
       }
     }
-  }), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("ul", {
     staticClass: "mt-2",
     attrs: {
       id: "suggestions-container"

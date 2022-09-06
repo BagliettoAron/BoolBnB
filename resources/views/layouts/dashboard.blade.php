@@ -27,7 +27,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Bool BnB</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BoolBnB</a>
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"

@@ -10520,6 +10520,38 @@ readers do not read off random characters that represent icons */
   font-size: 1.9rem;
 }
 
+#edit-accomodations {
+  background-color: #ff395d;
+}
+
+#title-edit {
+  font-size: 35px;
+  font-weight: 100;
+  color: black;
+  font-weight: bold;
+}
+
+#label-edit {
+  font-weight: 100;
+  font-size: 15px;
+  color: #484848;
+  font-weight: bold;
+}
+
+#btn-edit {
+  float: left;
+  width: 150px;
+  height: 42px;
+  border: 1px solid #FF5A5F;
+  margin: 0 0 3px 0;
+  background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 /*!
  * Bootstrap v4.6.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

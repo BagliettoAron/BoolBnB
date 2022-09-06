@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('accomodations', 'Api\AccomodationController@index')->name('api.accomodations.index');
+
+Route::post('/coordinates', 'Api\CoordinatesController@checkDistance')->name('api.coordinates.checkDistance');
