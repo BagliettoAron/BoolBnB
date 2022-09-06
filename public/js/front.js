@@ -2471,6 +2471,17 @@ var render = function render() {
     }
   }, [_vm._v("Advanced search"), _c("span", {
     staticClass: "sr-only"
+  }, [_vm._v("(current)")])])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item active"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: {
+        name: "searchaccomodations"
+      }
+    }
+  }, [_vm._v("Advanced search"), _c("span", {
+    staticClass: "sr-only"
   }, [_vm._v("(current)")])])], 1)])])])])])]);
 };
 
@@ -55046,7 +55057,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Corso Boolean\Desktop\BoolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /home/lorenzo/Documenti/Boolean/progetto-finane/BoolBnB/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
