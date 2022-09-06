@@ -110,10 +110,10 @@
 
     <script>
         function searchAddress() {
-            window.axios.defaults.headers.common = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            };
+            // window.axios.defaults.headers.common = {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json',
+            // };
             const resultsContainer = document.getElementById('suggestions-container');
             resultsContainer.innerHTML = '';
             const addressQuery = document.getElementById('address').value;

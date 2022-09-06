@@ -143,7 +143,7 @@ export default {
       resultsContainer.innerHTML = "";
       const addressQuery = document.getElementById("address").value;
       const linkApi = `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`;
-      const prova = this.setCoordinates(axiosLat, axiosLon);
+      
 
       axios.get(linkApi).then((resp) => {
         const response = resp.data.results;
