@@ -21,7 +21,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     {{-- Axios --}}
+=======
+    {{-- CDN Axios --}}
+>>>>>>> 6e24bf3e1979a78b7e4bc031162f1e55e6e650d1
 =======
     {{-- CDN Axios --}}
 >>>>>>> 6e24bf3e1979a78b7e4bc031162f1e55e6e650d1
