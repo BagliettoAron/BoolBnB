@@ -1,3 +1,56 @@
+// LOGIN
+#login-style {
+     p.welcome{
+         font-weight: bold;
+         font-size: 1.5rem;
+     }
+
+     .btn-primary{
+         background-color: #ff395d;
+         border: #ff395d;
+         width: 150px;
+     }
+
+     a {
+         color: black;
+     }
+
+     button.btn-link {
+         border: 1px solid black;
+         color: black;
+         width: 80%;
+         border-radius: .5rem;
+         margin: .6rem 0;
+     }
+
+}
+
+// REGISTER
+#register-style {
+    .btn-primary{
+        background-color: #ff395d;
+        border: #ff395d;
+        width: 150px;
+    }
+}
+
+// APP
+#app-style {
+    a.title {
+        color: #ff395d;
+    }
+
+    a:hover {
+        color: #ff395d;
+    }
+
+    i {
+        color: #ff395d;
+        font-size: 1.9rem;
+    }
+}
+
+HEAD
 #edit-accomodations {
     background-color: #ff395d
     ;

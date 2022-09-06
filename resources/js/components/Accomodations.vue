@@ -1,48 +1,6 @@
 <template>
   <div class="container">
     <h3>Accomodation's list</h3>
-
-    <form class="mb-5">
-      <h4 class="text-right mt-4">Search an accomodation</h4>
-      <div class="form-group" required>
-        <input
-          type="text"
-          class="form-control"
-          name="address"
-          placeholder="add address"
-          id="address"
-          @keyup="searchAddress()"
-          required
-        />
-        <div id="suggestions-container" class="mt-2"></div>
-        <!-- <input
-          type="text"
-          class="form-control d-none"
-          name="lat"
-          id="lat"
-          required
-        />
-        <input
-          type="text"
-          class="form-control d-none"
-          name="lon"
-          id="lon"
-          required
-        /> -->
-      </div>
-
-      <!-- <div class="form-group">
-                <label for="number_of_rooms">Number of rooms</label>
-                <input type="number" class="form-control" name="number_of_rooms" placeholder="number of rooms" required min="1" max="255"
-                id="number_of_rooms">
-            </div>
-
-            <div class="form-group">
-                <label for="number_of_beds">Number of beds</label>
-                <input type="number" class="form-control" name="number_of_beds"  placeholder="number of beds" required min="1" max="255"
-                id="number_of_beds">
-            </div> -->
-    </form>
     <div class="row row-cols-3">
       <!-- accomodations singolo -->
       <div
@@ -107,8 +65,6 @@ export default {
       lastPage: 0,
       totalAccomodotations: 0,
       accomodationsPerPage: 9,
-      lat: 0,
-      lon: 0,
     };
   },
   created() {
@@ -143,7 +99,7 @@ export default {
       resultsContainer.innerHTML = "";
       const addressQuery = document.getElementById("address").value;
       const linkApi = `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`;
-      
+      const prova = this.setCoordinates(axiosLat, axiosLon);
 
       axios.get(linkApi).then((resp) => {
         const response = resp.data.results;
@@ -228,4 +184,6 @@ export default {
 </script>
 
 
-<style></style>
+<style lang="scss" scoped>
+
+</style>
