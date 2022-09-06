@@ -26,8 +26,10 @@
 
             <div class="form-group">
                 <label for="picture" id="label-edit">Picture *</label>
-                <input type="text" class="form-control" name="picture" id="picture" required
-                    value="{{ old('picture') ? old('picture') : $accomodation->picture }}">
+                <input type="file" name="picture" id="picture" required>
+                @if ($accomodation->picture)
+                    <img style="max-width: 50%" class="mb-3" src="{{ asset('storage/' . $accomodation->picture) }}" alt="">
+                @endif
             </div>
 
             <div class="form-group" required>

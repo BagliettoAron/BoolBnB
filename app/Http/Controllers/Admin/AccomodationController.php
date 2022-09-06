@@ -108,6 +108,15 @@ class AccomodationController extends Controller
         $request->validate($this->getValidationRules());
         $data = $request->all();
         $accomodation = Accomodation::findOrFail($id);
+
+        if (isset($data['picture'])) {
+            if ($accomodation->picture) {
+                Storage::delete($accomodation->picture);
+            }
+            $image_path = Storage::put('accomodation_covers', $data['picture']);
+            $data['picture'] = $image_path;
+        }
+
         $accomodation->fill($data);
         $accomodation->save();
         if(isset($data['services'])) {

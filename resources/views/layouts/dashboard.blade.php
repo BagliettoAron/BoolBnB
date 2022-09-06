@@ -21,67 +21,70 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     {{-- CDN Axios --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BoolBnB</a>
-        <ul class="navbar-nav px-3 ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
+    <section id="dashboard-style">
+        <nav class="navbar navbar-expand-md flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 nav-title" href="#"><i class="fa-brands fa-airbnb"></i>BoolBnB</a>
+            <ul class="navbar-nav px-3 ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link nav-link nav-logout" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                    Logout
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-        </ul>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        {{-- <li class="nav-item">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            {{-- <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.home') }}">
                                 <i class="fa-solid fa-house"></i>
                                 Dashboard
                             </a>
                         </li> --}}
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('admin.accomodations.index') }}">
-                                <i class="fa-solid fa-file"></i>
-                                Your Accomodations
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('admin.accomodations.create') }}">
-                                <i class="fa-solid fa-square-plus"></i>
-                                Add Accomodation
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('admin.accomodations.index') }}">
+                                    <i class="fa-solid fa-house"></i>
+                                    Your Accomodations
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('admin.accomodations.create') }}">
+                                    <i class="fa-solid fa-square-plus"></i>
+                                    Add Accomodation
+                                </a>
+                            </li>
+                            {{-- <li class="nav-item">
+                                <a class="nav-link active" href="">
+                                    <i class="fa-solid fa-message"></i>
+                                    Send a message
+                                </a>
+                            </li> --}}
 
-                        {{-- <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('admin.categories.index') }}">
-                                <i class="fa-solid fa-stags"></i>
-                                Categorie
-                            </a>
-                        </li> --}}
+                        </ul>
 
-                    </ul>
+                    </div>
+                </nav>
 
-                </div>
-            </nav>
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 py-4">
-                @yield('content')
-            </main>
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 py-4">
+                    @yield('content')
+                </main>
+            </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>
