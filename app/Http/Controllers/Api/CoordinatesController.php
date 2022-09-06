@@ -20,7 +20,7 @@ class CoordinatesController extends Controller
             return $degrees * pi() / 180;
         }
           
-        function distanceInKmBetweenEarthCoordinates($lat1, $lon1, $lat2, $lon2) {
+        function distanceBetweenCoordinates($lat1, $lon1, $lat2, $lon2) {
             $earthRadiusKm = 6371;
           
             $dLat = degreesToRadians($lat2-$lat1);
@@ -38,7 +38,7 @@ class CoordinatesController extends Controller
         foreach ($accomodations as $accomodation) {
             $lat2 = $accomodation->lat;
             $lon2 = $accomodation->lon;
-            $this->$distance = distanceInKmBetweenEarthCoordinates($this->lat1, $this->lon1, $lat2, $lon2);
+            $this->$distance = distanceBetweenCoordinates($this->lat1, $this->lon1, $lat2, $lon2);
             dd($this->$distance);
         }
 

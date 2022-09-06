@@ -19,5 +19,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('accomodations', 'Api\AccomodationController@index')->name('api.accomodations.index');
+Route::get('accomodations/search', 'Api\AccomodationController@search')->name('api.accomodations.search');
 
-Route::post('/coordinates', 'Api\CoordinatesController@checkDistance')->name('api.coordinates.checkDistance');
+Route::get('services', 'Api\ServiceController@index')->name('api.service.index');
+
+Route::get('search', 'Api\SearchController@index')->name('api.search.index');
