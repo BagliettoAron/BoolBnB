@@ -2,7 +2,9 @@
 
 @section('content')
     <h2>{{ $this_accomodation->title }}</h2>
-    <img class="mb-3" src="{{ $this_accomodation->picture }}" alt="">
+    @if ($this_accomodation->picture)
+        <img class="mb-3" src="{{ asset('storage/' . $this_accomodation->picture) }}" alt="">
+    @endif
     <h4>Address: {{ $this_accomodation->address }}</h4>
     <p>Number of rooms: {{ $this_accomodation->number_of_rooms }}</p>
     <p>Number of beds: {{ $this_accomodation->number_of_beds }}</p>

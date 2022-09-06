@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <h2 class="pb-4" id="title-edit">Edit this accomodation</h2>
+        <h2 class="pb-4 title-edit">Edit this accomodation</h2>
 
         <form action="{{ route('admin.accomodations.update', ['accomodation' => $accomodation->id]) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')

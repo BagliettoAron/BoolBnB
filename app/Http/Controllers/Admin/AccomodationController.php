@@ -41,17 +41,19 @@ class AccomodationController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate($this->getValidationRules());
+
         $data = $request->all();
+        
+        // image
+        if(isset($data['picture'])) {
+            $image_path = Storage::put('accomodation_covers', $data['picture']);
+            $data['picture'] = $image_path;
+        }
+
+
         $data['user_id'] = Auth::user()->id;
-
-        //caricamento immagine
-        // if (isset($data['picture'])) {
-        //     //  Questa funzione salva il file caricato nell'input con name "image" nella cartella indicata. Inoltre, rinomina il file.
-        //     $img_path = Storage::put('picture', $data['picture']);
-        //     $data['picture'] = $img_path;
-        // }
-
         $accomodation = new Accomodation();
         $accomodation->fill($data);
         $accomodation->save();
