@@ -17,6 +17,10 @@ class AccomodationController extends Controller
         ]);
     }
 
+    // public function show(Request $request) {
+
+    // }
+
     public function search(Request $request)
     {
         $centerLat = $request->lat;

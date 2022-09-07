@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 import Home from './pages/Home.vue'
 import SearchAccomodations from './pages/SearchAccomodations.vue'
+import Accomodation from './pages/Accomodation.vue'
 
 
 const router = new VueRouter({
@@ -20,6 +21,11 @@ const router = new VueRouter({
             name: 'searchaccomodations',
             component: SearchAccomodations
         },      
+        {
+            path: '/accomodation/:id',
+            name: 'accomodation',
+            component: Accomodation
+        },  
     ]
 })
 
