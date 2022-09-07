@@ -2082,39 +2082,94 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AccomodationCard: _components_AccomodationCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  data: function data() {
+    return {
+      lat: 0,
+      lon: 0,
+      searchRadius: 20,
+      nbrOfRooms: "",
+      nbrOfBeds: "",
+      availableServices: [],
+      selectedServices: [],
+      accomodationsInRadius: []
+    };
+  },
   methods: {
     searchAddress: function searchAddress() {
+      var _this = this;
+
       window.axios.defaults.headers.common = {
         Accept: "application/json",
         "Content-Type": "application/json"
       };
-      var resultsContainer = document.getElementById("suggestions-container");
-      resultsContainer.innerHTML = "";
       var addressQuery = document.getElementById("address").value;
       var linkApi = "https://api.tomtom.com/search/2/search/".concat(addressQuery, ".json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7");
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(linkApi).then(function (resp) {
-        var response = resp.data.results;
-        response.forEach(function (element) {
-          var divElement = document.createElement("div");
-          divElement.classList.add("address-result", "border");
-          divElement.style.cursor = "pointer";
-          divElement.innerHTML = element.address.freeformAddress;
-          document.getElementById("suggestions-container").append(divElement);
-          divElement.addEventListener("click", function () {
-            document.getElementById("address").value = element.address.freeformAddress;
-            resultsContainer.innerHTML = "";
-            var lat = element.position.lat;
-            var lon = element.position.lon;
-            axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://api.tomtom.com/search/2/search/via roma.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7").then(function (resp) {
-              console.log(resp);
-            });
-            console.log(element.address.freeformAddress);
-            console.log(element.position.lat);
-            console.log(element.position.lon);
-          });
+        _this.collectAddress(resp);
+      });
+    },
+    collectAddress: function collectAddress(addressData) {
+      var _this2 = this;
+
+      var resultsContainer = document.getElementById("suggestions-container");
+      resultsContainer.innerHTML = "";
+      var response = addressData.data.results;
+      response.forEach(function (element) {
+        var listItem = document.createElement("li");
+        listItem.classList.add("address-result", "border", "list-group-item");
+        listItem.style.cursor = "pointer";
+        listItem.innerHTML = element.address.freeformAddress;
+        document.getElementById("suggestions-container").append(listItem);
+        listItem.addEventListener("mouseover", function () {
+          listItem.classList.add("active");
+        });
+        listItem.addEventListener("mouseleave", function () {
+          listItem.classList.remove("active");
+        });
+        listItem.addEventListener("click", function () {
+          document.getElementById("address").value = element.address.freeformAddress;
+          resultsContainer.innerHTML = "";
+          _this2.lat = element.position.lat;
+          _this2.lon = element.position.lon; //   Axios.get(
+          //     `https://api.tomtom.com/search/2/search/via roma.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
+          //   ).then((addressData) => {
+          //     console.log(addressData);
+          //   });
         });
       });
+    },
+    getResults: function getResults() {
+      var _this3 = this;
+
+      var axiosLink = "http://127.0.0.1:8000/api/accomodations/search?lat=".concat(this.lat, "&lon=").concat(this.lon, "&searchRadius=").concat(this.searchRadius, "&nbrOfRooms=").concat(this.nbrOfRooms, "&nbrOfBeds=").concat(this.nbrOfBeds);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(axiosLink).then(function (resp) {
+        // console.log(resp.data.accomodationsInRadius);
+        _this3.accomodationsInRadius = resp.data.accomodationsInRadius;
+        console.log(_this3.accomodationsInRadius);
+      });
     }
+  },
+  computed: {
+    filterBy: function filterBy() {
+      var _this4 = this;
+
+      if (this.nbrOfRooms || this.nbrOfBeds) {
+        return this.accomodationsInRadius.filter(function (item) {
+          return (// console.log(item.number_of_beds)
+            item.number_of_beds > _this4.nbrOfBeds && item.number_of_rooms > _this4.nbrOfRooms
+          );
+        });
+      } else {
+        return this.accomodationsInRadius;
+      }
+    }
+  },
+  created: function created() {
+    var _this5 = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/services").then(function (resp) {
+      _this5.availableServices = resp.data;
+    });
   }
 });
 
@@ -2162,7 +2217,7 @@ var render = function render() {
     staticClass: "card-description"
   }, [_c("p", {
     staticClass: "card-title"
-  }, [_vm._v(_vm._s(_vm.accomodation.title))]), _vm._v(" "), _c("small", [_vm._v(_vm._s(_vm.accomodation.price_per_night) + "€ / notte")])])]);
+  }, [_vm._v(_vm._s(_vm.accomodation.title))]), _vm._v(" "), _c("small", [_vm._v(_vm._s(_vm.accomodation.price_per_night) + "€ / notte")]), _vm._v(" "), _c("p", [_vm._v("Number of rooms: " + _vm._s(_vm.accomodation.number_of_rooms))]), _vm._v(" "), _c("p", [_vm._v("Number of beds: " + _vm._s(_vm.accomodation.number_of_beds))])])]);
 };
 
 var staticRenderFns = [function () {
@@ -2646,18 +2701,18 @@ var render = function render() {
   }, [_c("h4", {
     staticClass: "text-right mt-4"
   }, [_vm._v("Search an accomodation")]), _vm._v(" "), _c("div", {
-    staticClass: "form-group",
+    staticClass: "form-group"
+  }, [_c("label", {
     attrs: {
-      required: ""
+      "for": "address"
     }
-  }, [_c("input", {
+  }, [_vm._v("Search for your desired location")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "text",
       name: "address",
-      placeholder: "add address",
-      id: "address",
-      required: ""
+      placeholder: "Type ad address...",
+      id: "address"
     },
     on: {
       keyup: function keyup($event) {
@@ -2665,11 +2720,172 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("ul", {
-    staticClass: "mt-2",
+    staticClass: "list-group mt-2 position-absolute",
     attrs: {
       id: "suggestions-container"
     }
-  })])])]);
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "radius"
+    }
+  }, [_vm._v("Maximum distance from searched point (km)")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.searchRadius,
+      expression: "searchRadius"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      name: "radius",
+      id: "radius",
+      min: "1"
+    },
+    domProps: {
+      value: _vm.searchRadius
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.searchRadius = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "rooms"
+    }
+  }, [_vm._v("Minimum number of rooms")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.nbrOfRooms,
+      expression: "nbrOfRooms"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      name: "rooms",
+      id: "rooms",
+      min: "1",
+      placeholder: "Ex. 3"
+    },
+    domProps: {
+      value: _vm.nbrOfRooms
+    },
+    on: {
+      change: function change($event) {
+        return _vm.getResults();
+      },
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.nbrOfRooms = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "beds"
+    }
+  }, [_vm._v("Minimum number of beds")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.nbrOfBeds,
+      expression: "nbrOfBeds"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      name: "beds",
+      min: "1",
+      id: "beds",
+      placeholder: "Ex. 5"
+    },
+    domProps: {
+      value: _vm.nbrOfBeds
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.nbrOfBeds = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("p", {
+    staticClass: "mb-1"
+  }, [_vm._v("Check the services you need")]), _vm._v(" "), _vm._l(_vm.availableServices, function (service, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "form-check"
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.selectedServices,
+        expression: "selectedServices"
+      }],
+      staticClass: "form-check-input",
+      attrs: {
+        name: "services",
+        type: "checkbox"
+      },
+      domProps: {
+        value: service.id,
+        checked: Array.isArray(_vm.selectedServices) ? _vm._i(_vm.selectedServices, service.id) > -1 : _vm.selectedServices
+      },
+      on: {
+        change: function change($event) {
+          var $$a = _vm.selectedServices,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false;
+
+          if (Array.isArray($$a)) {
+            var $$v = service.id,
+                $$i = _vm._i($$a, $$v);
+
+            if ($$el.checked) {
+              $$i < 0 && (_vm.selectedServices = $$a.concat([$$v]));
+            } else {
+              $$i > -1 && (_vm.selectedServices = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.selectedServices = $$c;
+          }
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-check-label",
+      attrs: {
+        "for": "services"
+      }
+    }, [_vm._v("\n        " + _vm._s(service.name) + "\n      ")])]);
+  }), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary mt-3",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.getResults();
+      }
+    }
+  }, [_vm._v("\n      Search\n    ")])], 2), _vm._v(" "), _c("div", {
+    staticClass: "row row-cols-3"
+  }, _vm._l(_vm.filterBy, function (item) {
+    return _c("div", {
+      key: item.index,
+      staticClass: "col"
+    }, [_c("AccomodationCard", {
+      attrs: {
+        accomodation: item
+      }
+    })], 1);
+  }), 0)]);
 };
 
 var staticRenderFns = [];

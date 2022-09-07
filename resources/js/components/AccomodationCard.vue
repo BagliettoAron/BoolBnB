@@ -11,7 +11,8 @@
     <div class="card-description">
       <p class="card-title">{{ accomodation.title }}</p>
       <small>{{ accomodation.price_per_night }}€ / notte</small>
-      <p>Number of beds: {{ accomodation.number_of_rooms }}</p>
+      <p>Number of rooms: {{ accomodation.number_of_rooms }}</p>
+      <p>Number of beds: {{ accomodation.number_of_beds }}</p>
       <!-- <router-link :to="{ name: 'single-post', params: { slug: post.slug } }" class="card-link">Leggi post</router-link> -->
     </div>
   </section>

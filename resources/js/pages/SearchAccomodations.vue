@@ -45,6 +45,7 @@
           min="1"
           placeholder="Ex. 3"
           v-model="nbrOfRooms"
+          @change="getResults()"
         />
       </div>
       <!-- /Min. rooms -->
@@ -93,11 +94,11 @@
     <!-- Single accomodation -->
     <div class="row row-cols-3">
       <div
-        v-for="accomodation in accomodationsInRadius"
-        :key="accomodation.id"
+        v-for="item in filterBy"
+        :key="item.index"
         class="col"
       >
-        <AccomodationCard :accomodation="accomodation" />
+        <AccomodationCard :accomodation="item" />
       </div>
     </div>
     <!-- /Single accomodation -->
@@ -179,40 +180,29 @@ export default {
         console.log(this.accomodationsInRadius);
       });
     },
+  },
 
-},
-
-computed: {
+  computed: {
     filterBy() {
-      if (this.nbrOfRooms) {
-        console.log('trigger');
-          return this.accomodationsInRadius.filter(item => item.number_of_beds > 12);
+      if (this.nbrOfRooms || this.nbrOfBeds) {
+        return this.accomodationsInRadius.filter((item) => {
+          return (
+              // console.log(item.number_of_beds)
+              item.number_of_beds > this.nbrOfBeds &&
+              item.number_of_rooms > this.nbrOfRooms
+          );
+        });
       } else {
         return this.accomodationsInRadius;
       }
-
-    //   filterBy() {
-    //   if (this.nbrOfRooms) {
-    //       return this.accomodationsInRadius.filter((item) => {
-    //           return (
-    //             //   console.log(item.number_of_beds)
-    //             //   item.number_of_rooms > this.nbrOfRooms
-    //             //   && console.log(this.accomodationsInRadius)
-    //             item.title.includes('servizi')
-    //           );
-    //       });
-    //   } else {
-    //     return this.accomodationsInRadius;
-    //   }
-    }
-    
+    },
   },
 
   created() {
     Axios.get("/api/services").then((resp) => {
       this.availableServices = resp.data;
     });
-  }
+  },
 };
 </script>
 
