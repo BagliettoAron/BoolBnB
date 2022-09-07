@@ -122,7 +122,7 @@ class AccomodationController extends Controller
         if(isset($data['services'])) {
             $accomodation->services()->sync($data['services']);
         }
-        return redirect()->route('admin.accomodations.show', ['accomodation' => $accomodation->id]);
+        return redirect()->route('admin.accomodations.show', ['accomodation' => $accomodation->id])->with('status', 'Your accomodation has been modified succesfully!');
     }
 
     /**
@@ -147,7 +147,7 @@ class AccomodationController extends Controller
             'number_of_rooms' => 'required|integer|min:1|max:255',
             'number_of_beds' => 'required|integer|min:1|max:255',
             'number_of_bathrooms' => 'required|integer|min:0|max:255',
-            'square_meters' => 'required|integer|min:20',
+            'square_meters' => 'nullable',
             'price_per_night' => 'required|integer|min:10',
             'visible' => 'required|boolean'
         ];

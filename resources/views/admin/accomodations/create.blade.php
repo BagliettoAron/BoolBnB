@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="container" id="create-accomodation">
+    <div class="container" id="create-style">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -67,7 +67,7 @@
 
             <div class="form-group">
                 <label for="square_meters">Square meters</label>
-                <input type="number" class="form-control" name="square_meters" required min="20" id="square_meters"
+                <input type="number" class="form-control" name="square_meters" min="20" id="square_meters"
                     value="{{ old('square_meters') }}">
             </div>
 
@@ -80,10 +80,10 @@
             <div class="services">
                 <label>Services</label>
                 @foreach ($services as $service)
-                    <div class="form-check">
-                        <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
-                            id="service-{{ $service->id }}"
-                            {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
+                <div class="form-check">
+                    <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
+                    id="service-{{ $service->id }}"
+                    {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="service-{{ $service->id }}">
                             {{ $service->name }}
                         </label>

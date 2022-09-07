@@ -54,19 +54,19 @@
 // EDIT
 #edit-accomodations {
 
+    background-color: rgba(255, 57, 93, .3);
+    border-radius: 15px;
    .title-edit {
       font-size: 35px;
       font-weight: 100;
-      color: black;
       font-weight: bold;
-      
    }
+
 }
 
 #label-edit {
    font-weight: 100;
    font-size: 15px;
-   color: #484848;
    font-weight: bold;
 }
 
@@ -76,13 +76,17 @@
    height: 42px;
    border: 1px solid #ff395d;
    margin: 0 0 3px 0;
-//    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
    color: #fff;
    font-weight: bold;
    background-color: #ff395d;
    font-size: 14px;
    border-top-right-radius: 3px;
    border-bottom-right-radius: 3px;
+}
+
+#btn-edit:hover {
+    background-color: #fff;
+    color: #ff395d;
 }
 
 // DASHBOARD
@@ -126,14 +130,90 @@
 
 // SHOW
 #show-style {
+    // background-color: rgba(255, 57, 93, .3);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     .description {
-        padding-top: 3rem;
+        padding-top: 2rem;
+
+        p {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: .5rem;
+            font-weight: bold;
+        }
+
+        h4 {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: .5rem;
+            font-weight: bold;
+        }
+
+        h5 {
+            border: 1px solid #18c518;
+            border-radius: 5px;
+            padding: .5rem;
+            background-color: #18c518;
+        }
     }
 
     h2 {
         text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    a {
+        background-color: #ff395d;
+        border: 1px solid #ff395d;
+    }
+
+    a:hover {
+        background-color: #fff;
+        color: #ff395d;
+    }
+
+    button {
+        background-color: black;
+        border: 1px solid black;
+    }
+
+    button:hover {
+        background-color: #fff;
+        color: black;
+    }
+
+    .picture {
+        
+        img {
+            border-radius: 15px;
+        }
+
+        .vote {
+            i {
+                font-size: 1.3rem;
+                color: #ff395d;
+            }
+        }
+    }
+}
+
+// CREATE
+#create-style {
+
+    h2 {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    button {
+        background-color: #ff395d;
+        border: 1px solid #ff395d;
+    }
+
+    button:hover {
+        background-color: #fff;
+        color: #ff395d;
     }
 }

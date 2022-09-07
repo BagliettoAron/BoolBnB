@@ -27,7 +27,7 @@ class CreateAccomodationsTable extends Migration
             $table->unsignedTinyInteger('number_of_rooms');
             $table->unsignedTinyInteger('number_of_beds');
             $table->unsignedTinyInteger('number_of_bathrooms');
-            $table->unsignedSmallInteger('square_meters');
+            $table->unsignedSmallInteger('square_meters')->nullable();
             $table->unsignedSmallInteger('price_per_night');
             $table->boolean('visible');
             $table->string('address');

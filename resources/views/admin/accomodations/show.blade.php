@@ -7,13 +7,26 @@
         @if ($this_accomodation->picture)
             <img class="mb-3" src="{{ asset('storage/' . $this_accomodation->picture) }}" alt="">
         @endif
+        <div class="vote d-flex">
+            <i class="fas fa-star "></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i> <strong>/5</strong>
+        </div>
     </div>
     <div class="description">
+        @if (session('status'))
+                 <div class="alert alert-success">
+                    {{session('status')}}
+                 </div>
+        @endif
         <h4>Address: {{ $this_accomodation->address }}</h4>
         <p>Number of rooms: {{ $this_accomodation->number_of_rooms }}</p>
         <p>Number of beds: {{ $this_accomodation->number_of_beds }}</p>
         <p>Number of bathrooms: {{ $this_accomodation->number_of_bathrooms }}</p>
-        <p>Square meters: {{ $this_accomodation->square_meters }}</p>
+        @if ($this_accomodation->square_meters)
+            <p>Square meters: {{ $this_accomodation->square_meters }}</p>
+        @endif
         <p>Services:
             @forelse ($this_accomodation->services as $service)
                 {{ $service->name }}{{ $loop->last ? '' : ', ' }}
