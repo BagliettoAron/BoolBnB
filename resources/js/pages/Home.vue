@@ -1,17 +1,20 @@
 <template>
-  <section class="ms_home">
-    <div class="container">
-      <h1 class="text-center my-3">Questa è la home</h1>
-    </div>
-  </section>
+  <div class="container">
+    <Accomodations />
+  </div>
 </template>
-  
+
 <script>
+
+import Accomodations from '../components/Accomodations.vue';
+
 export default {
-  name: "Home",
-};
+    components: {
+        Accomodations
+    }
+}
 </script>
-  
-<style lang="scss" scoped>
+
+<style>
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
+    <h4 class="text-right mt-4">Search an accomodation</h4>
     <form class="mb-5">
-      <h4 class="text-right mt-4">Search an accomodation</h4>
       <!-- Address filter -->
       <div class="form-group">
         <label for="address">Search for your desired location</label>
@@ -9,7 +9,7 @@
           type="text"
           class="form-control"
           name="address"
-          placeholder="Type ad address..."
+          placeholder="Type a city or an address..."
           id="address"
           @keyup="searchAddress()"
         />
@@ -30,78 +30,80 @@
           id="radius"
           min="1"
           v-model="searchRadius"
-        />
-      </div>
-      <!-- /Search radius -->
-
-      <!-- Min. rooms -->
-      <div class="form-group">
-        <label for="rooms">Minimum number of rooms</label>
-        <input
-          type="number"
-          name="rooms"
-          class="form-control"
-          id="rooms"
-          min="1"
-          placeholder="Ex. 3"
-          v-model="nbrOfRooms"
-          @change="getResults()"
-        />
-      </div>
-      <!-- /Min. rooms -->
-
-      <!-- Min. beds -->
-      <div class="form-group">
-        <label for="beds">Minimum number of beds</label>
-        <input
-          type="number"
-          name="beds"
-          class="form-control"
-          min="1"
-          id="beds"
-          placeholder="Ex. 5"
-          v-model="nbrOfBeds"
-        />
-      </div>
-      <!-- /Min. beds -->
-
-      <!-- Services -->
-      <p class="mb-1">Check the services you need</p>
-      <div
-        class="form-check"
-        v-for="(service, index) in availableServices"
-        :key="index"
-      >
-        <input
-          class="form-check-input"
-          name="services"
-          type="checkbox"
-          :value="service.id"
-          v-model="selectedServices"
-        />
-        <label class="form-check-label" for="services">
-          {{ service.name }}
-        </label>
-      </div>
-      <!-- /Services -->
-
+          />
+        </div>
+        <!-- /Search radius -->
+        
+        <!-- Min. rooms -->
+        <div class="form-group">
+          <label for="rooms">Minimum number of rooms</label>
+          <input
+            type="number"
+            name="rooms"
+            class="form-control"
+            id="rooms"
+            min="1"
+            placeholder="Ex. 3"
+            v-model="nbrOfRooms"
+          />
+        </div>
+        <!-- /Min. rooms -->
+    
+        <!-- Min. beds -->
+        <div class="form-group">
+          <label for="beds">Minimum number of beds</label>
+          <input
+            type="number"
+            name="beds"
+            class="form-control"
+            min="1"
+            id="beds"
+            placeholder="Ex. 5"
+            v-model="nbrOfBeds"
+          />
+        </div>
+        <!-- /Min. beds -->
+    
+        <!-- Services -->
+        <p class="mb-1">Check the services you need</p>
+        <div
+          class="form-check"
+          v-for="(service, index) in availableServices"
+          :key="index"
+        >
+          <input
+            class="form-check-input"
+            name="services"
+            type="checkbox"
+            :value="service.id"
+            v-model="selectedServices"
+          />
+          <label class="form-check-label" for="services">
+            {{ service.name }}
+          </label>
+        </div>
+        <!-- /Services -->
+      
       <!-- Search button -->
       <button type="button" class="btn btn-primary mt-3" @click="getResults()">
         Search
       </button>
       <!-- /Search button -->
     </form>
-    <!-- Single accomodation -->
+
+    <!-- Accomodations container -->
     <div class="row row-cols-3">
+      <!-- Single accomodation -->
       <div
-        v-for="item in filterBy"
-        :key="item.index"
+        v-for="accomodation in accomodationsInRadius"
+        :key="accomodation.index"
         class="col"
       >
-        <AccomodationCard :accomodation="item" />
+        <AccomodationCard :accomodation="accomodation" />
       </div>
+      <!-- /Single accomodation -->
     </div>
-    <!-- /Single accomodation -->
+    <!-- /Accomodations container -->
   </div>
 </template>
 
@@ -162,39 +164,26 @@ export default {
           resultsContainer.innerHTML = "";
           this.lat = element.position.lat;
           this.lon = element.position.lon;
-          //   Axios.get(
-          //     `https://api.tomtom.com/search/2/search/via roma.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
-          //   ).then((addressData) => {
-          //     console.log(addressData);
-          //   });
         });
       });
     },
 
     getResults() {
-      const axiosLink = `http://127.0.0.1:8000/api/accomodations/search?lat=${this.lat}&lon=${this.lon}&searchRadius=${this.searchRadius}&nbrOfRooms=${this.nbrOfRooms}&nbrOfBeds=${this.nbrOfBeds}`;
 
-      Axios.get(axiosLink).then((resp) => {
-        // console.log(resp.data.accomodationsInRadius);
+      Axios.get("/api/accomodations/search", {
+        params: {
+          lat: this.lat,
+          lon: this.lon,
+          searchRadius: this.searchRadius,
+          nbrOfRooms: this.nbrOfRooms,
+          nbrOfBeds: this.nbrOfBeds,
+          // selectedServices: this.selectedServices
+        }
+      }).then((resp) => {
+        // console.log(resp.data.results.data);
+        console.log(resp.data.accomodationsInRadius);
         this.accomodationsInRadius = resp.data.accomodationsInRadius;
-        console.log(this.accomodationsInRadius);
       });
-    },
-  },
-
-  computed: {
-    filterBy() {
-      if (this.nbrOfRooms || this.nbrOfBeds) {
-        return this.accomodationsInRadius.filter((item) => {
-          return (
-              // console.log(item.number_of_beds)
-              item.number_of_beds > this.nbrOfBeds &&
-              item.number_of_rooms > this.nbrOfRooms
-          );
-        });
-      } else {
-        return this.accomodationsInRadius;
-      }
     },
   },
 
@@ -206,4 +195,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+  #suggestions-container {
+    z-index: 1;
+  }
+</style>

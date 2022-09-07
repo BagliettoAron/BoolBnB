@@ -4,9 +4,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import Home from './pages/Home.vue'
-import About from './pages/About.vue'
-import Contact from './pages/Contact.vue'
-import AccomodationsContainer from './pages/AccomodationsContainer.vue'
 import SearchAccomodations from './pages/SearchAccomodations.vue'
 
 
@@ -17,22 +14,7 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home
-        },     
-        {
-            path: '/about',
-            name: 'about',
-            component: About
-        },
-        {
-            path: '/contact',
-            name: 'contact',
-            component: Contact
-        },
-        {
-            path: '/accomodationscontainer',
-            name: 'accomodationscontainer',
-            component: AccomodationsContainer
-        },    
+        },      
         {
             path: '/searchaccomodations',
             name: 'searchaccomodations',
