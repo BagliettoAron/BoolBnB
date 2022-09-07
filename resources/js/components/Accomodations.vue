@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h3>Accomodation's list</h3>
     <div class="row row-cols-3">
       <!-- accomodations singolo -->
       <div
