@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
 @section('content')
     <div class="container" id="edit-accomodations">
@@ -68,7 +69,7 @@
 
             <div class="form-group">
                 <label for="square_meters" id="label-edit">Square meters</label>
-                <input type="number" class="form-control" name="square_meters" required min="20" id="square_meters"
+                <input type="number" class="form-control" name="square_meters"  min="20" id="square_meters"
                     value="{{ old('square_meters') ? old('square_meters') : $accomodation->square_meters }}">
             </div>
 

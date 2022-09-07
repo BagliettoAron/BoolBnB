@@ -19,6 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    {{-- cdn toastr --}}
+
 </head>
 <body>
     <div id="app">
@@ -78,7 +80,5 @@
             @yield('content')
         </main>
     </div>
-
-   
 </body>
 </html>
