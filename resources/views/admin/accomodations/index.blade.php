@@ -3,6 +3,8 @@
 @section('content')
     <div id="index-style">
         <h2 class="mb-3">Hi {{$logged_user->name}} {{$logged_user->last_name}}! These are your accomodations</h2>
+
+
         <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
     
             @forelse ($logged_user->accomodation as $accomodation)

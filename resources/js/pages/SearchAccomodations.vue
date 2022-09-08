@@ -92,7 +92,7 @@
     </form>
 
     <!-- Accomodations container -->
-    <div class="row row-cols-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
       <!-- Single accomodation -->
       <div
         v-for="accomodation in accomodationsInRadius"
