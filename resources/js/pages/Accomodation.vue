@@ -4,7 +4,6 @@
       <h2>{{ accomodation.title }}</h2>
       <img
         v-if="accomodation.picture"
-        class="card-img-top"
         :src="accomodation.picture"
         alt="accomodation-picture"
       />

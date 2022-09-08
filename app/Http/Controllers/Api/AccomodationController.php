@@ -11,6 +11,11 @@ class AccomodationController extends Controller
     public function index(Request $request)
     {
         $accomodations = Accomodation::paginate($request->accomodations_per_page);
+        foreach ($accomodations as $accomodation) {
+            if ($accomodation->picture) {
+                $accomodation->picture = url('storage/' . $accomodation->picture);
+            }
+        }
         return response()->json([
             'success' => true,
             'results' => $accomodations
