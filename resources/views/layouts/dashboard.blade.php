@@ -33,7 +33,7 @@
 <body>
     <section id="dashboard-style">
         <nav class="navbar navbar-expand-md flex-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0 nav-title" href="#"><i class="fa-brands fa-airbnb"></i>BoolBnB</a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 nav-title" href="{{ url('/') }}"><i class="fa-brands fa-airbnb"></i>BoolBnB</a>
             <ul class="navbar-nav px-3 ml-auto">
                 <li class="nav-item">
                     <a class="nav-link nav-link nav-logout" href="{{ route('logout') }}"

@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="index-style">
-        <h2 class="mb-3">Hi {{$logged_user->name}} {{$logged_user->last_name}}! These are your accomodations</h2>
+        <h3 class="mb-4">Hi {{$logged_user->name}}! These are your accomodations</h3>
 
 
         <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2">

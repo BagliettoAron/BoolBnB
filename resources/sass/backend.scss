@@ -1,11 +1,11 @@
 // LOGIN
 #login-style {
-    p.welcome{
+    p.welcome {
         font-weight: bold;
         font-size: 1.5rem;
     }
 
-    .btn-primary{
+    .btn-primary {
         background-color: #ff395d;
         border: #ff395d;
         width: 150px;
@@ -27,27 +27,54 @@
 
 // REGISTER
 #register-style {
-   .btn-primary{
-       background-color: #ff395d;
-       border: #ff395d;
-       width: 150px;
-   }
+    .btn-primary {
+        background-color: #ff395d;
+        border: #ff395d;
+        width: 150px;
+    }
 }
 
 // APP
-#app-style {
-   a.title {
-       color: #ff395d;
-   }
+// #app-style {
+//     a.title {
+//         color: #ff395d;
+//     }
 
-   a:hover {
-       color: #ff395d;
-   }
+//     a:hover {
+//         color: #ff395d;
+//     }
 
-   i {
-       color: #ff395d;
-       font-size: 1.9rem;
-   }
+//     i {
+//         color: #ff395d;
+//         font-size: 1.9rem;
+//     }
+// }
+
+header {
+    border-bottom: 1px solid lightgray;
+    height: 80px;
+    line-height: 40px;
+    margin-bottom: 2rem;
+
+    .ms_title {
+        color: #ff385d;
+        font-size: 1.2rem;
+        margin-left: 0.4rem;
+    }
+
+    i {
+        color: #ff395d;
+        font-size: 1.5rem;
+    }
+
+    // .ms_auth {
+    //     color: rgba($color: #000000, $alpha: .5);
+
+    // }
+
+    // .ms_auth:hover {
+    //     color: #ff395d;
+    // }
 }
 
 
@@ -56,32 +83,33 @@
 
     background-color: #FAF6F6;
     border-radius: 15px;
-   .title-edit {
-      font-size: 35px;
-      font-weight: 100;
-      font-weight: bold;
-   }
+
+    .title-edit {
+        font-size: 35px;
+        font-weight: 100;
+        font-weight: bold;
+    }
 
 }
 
 #label-edit {
-   font-weight: 100;
-   font-size: 15px;
-   font-weight: bold;
+    font-weight: 100;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 #btn-edit {
-   float: left;
-   width: 150px;
-   height: 42px;
-   border: 1px solid #ff395d;
-   margin: 0 0 3px 0;
-   color: #fff;
-   font-weight: bold;
-   background-color: #ff395d;
-   font-size: 14px;
-   border-top-right-radius: 3px;
-   border-bottom-right-radius: 3px;
+    float: left;
+    width: 150px;
+    height: 42px;
+    border: 1px solid #ff395d;
+    margin: 0 0 3px 0;
+    color: #fff;
+    font-weight: bold;
+    background-color: #ff395d;
+    font-size: 14px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 #btn-edit:hover {
@@ -92,7 +120,7 @@
 // DASHBOARD
 #dashboard-style {
 
-    .nav-title{
+    .nav-title {
         color: #ff395d;
         font-size: 1.4rem;
     }
@@ -122,10 +150,6 @@
         color: #ff395d;
         background-color: #fff;
     }
-
-    h2 {
-        text-transform: uppercase;
-    }
 }
 
 // SHOW
@@ -152,15 +176,14 @@
         }
 
         h5 {
-            border: 1px solid #18c518;
+            border: 1px solid #6cdd9d;
             border-radius: 5px;
             padding: .5rem;
-            background-color: #18c518;
+            background-color: #c6ecd6;
         }
     }
 
     h2 {
-        text-transform: uppercase;
         font-weight: bold;
     }
 
@@ -185,7 +208,7 @@
     }
 
     .picture {
-        
+
         img {
             border-radius: 15px;
             width: 100%;
@@ -220,9 +243,11 @@
         color: #ff395d;
     }
 }
+
 .w-85 {
     width: 85%;
 }
+
 .card {
     &-img-top {
         width: 100%;

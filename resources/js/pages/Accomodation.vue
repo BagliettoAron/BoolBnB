@@ -14,6 +14,9 @@
        <span class="mr-3">&#10004; <i class="fas fa-toilet icon"></i> {{ accomodation.number_of_bathrooms}} Bathrooms </span> 
        <span class="mr-3">&#10004; <i class="fas fa-vector-square icon"></i> {{ accomodation.square_meters}} Square meters </span> 
       </p>
+      <ul>
+        <li v-for="service in this.accomodation.services" :key="service.id">{{ service.name }}</li>
+      </ul>
       <h5 class="pt-4 pb-4 price"><i class="fas fa-euro-sign"></i> {{ accomodation.price_per_night}} Price per night</h5>
     
     </div>
@@ -23,7 +26,6 @@
 
 <script>
 import Axios from "axios";
-
 
 export default {
   name: "Accomodation",
