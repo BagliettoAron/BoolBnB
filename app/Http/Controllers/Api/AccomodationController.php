@@ -88,6 +88,10 @@ class AccomodationController extends Controller
         }
 
         foreach ($accomodations as $accomodation) {
+            if ($accomodation->picture) {
+                $accomodation->picture = url('storage/' . $accomodation->picture);
+            }
+            
             $lat2 = $accomodation->lat;
             $lon2 = $accomodation->lon;
             $distance = distanceBetweenCoordinates($centerLat, $centerLon, $lat2, $lon2);

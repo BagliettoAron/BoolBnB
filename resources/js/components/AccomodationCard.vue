@@ -1,28 +1,29 @@
 <template>
-  <section class="d-flex align-items-center flex-column">
-    <div class="card">
-      <img v-if="accomodation.picture" class="card-img-top" :src="accomodation.picture" alt="accomodation-picture">
-      <div class="card-image">
-        <div class="card-like">
-          <i class="fa-regular fa-heart"></i>
+  <router-link :to="{ name: 'accomodation', params: { id: accomodation.id } }">
+    <section class="d-flex align-items-center flex-column">
+      <div class="card">
+        <div class="card-image">
+          <img
+            v-if="accomodation.picture"
+            class="card-img-top"
+            :src="accomodation.picture"
+            alt="accomodation-picture"
+          />
+          <div class="card-like">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <!-- <p>Categoria: {{ categoryName }}</p> -->
         </div>
-        <!-- <p>Categoria: {{ categoryName }}</p> -->
       </div>
-    </div>
-    <div class="card-description">
-      <h4 class="card-title">{{ accomodation.title }}</h4>
-      <small>{{ accomodation.price_per_night }}€ / notte</small>
-      <!-- <p>Number of rooms: {{ accomodation.number_of_rooms }}</p>
+      <div class="card-description">
+        <h6 class="card-title">{{ accomodation.title }}</h6>
+        <small>{{ accomodation.price_per_night }}€ / night</small>
+        <!-- <p>Number of rooms: {{ accomodation.number_of_rooms }}</p>
       <p>Number of beds: {{ accomodation.number_of_beds }}</p> -->
-      <div>
-        <router-link
-          :to="{ name: 'accomodation', params: { id: accomodation.id } }"
-          class="card-link"
-          >Show</router-link
-        >
+        <div></div>
       </div>
-    </div>
-  </section>
+    </section>
+  </router-link>
 </template>
 
 <script>
@@ -35,30 +36,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
 .card {
   width: 300px;
   height: 300px;
+  border: none;
   border-radius: 0.7rem;
-  margin-bottom: 1rem;
-  position: relative;
+  margin-bottom: 0.5rem;
 
-  &-like {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  &-image {
+    position: relative;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
 
-    i {
-      font-size: 1.3rem;
+    img {
+      border-radius: inherit;
+      height: 100%;
+      overflow: hidden;
     }
 
-    i:hover {
-      color: #ff385d;
+    .card-like {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+
+      i {
+        font-size: 1.3rem;
+      }
+
+      i:hover {
+        color: #ff385d;
+      }
     }
   }
 
   &-description {
     margin-bottom: 1.5rem;
-    margin-left: 1rem;
     width: 300px;
     h6 {
       font-weight: bold;
