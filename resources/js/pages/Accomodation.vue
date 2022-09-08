@@ -1,12 +1,21 @@
 <template>
   <div class="container">
     <div v-if="accomodation">
-      <h2>{{ accomodation.title }}</h2>
+      <h2 class="accomodationTitle">{{ accomodation.title }}</h2>
       <img
         v-if="accomodation.picture"
         :src="accomodation.picture"
         alt="accomodation-picture"
       />
+      <h4 class="mt-4">{{ accomodation.address }}</h4>
+      <p class="mt-4"> 
+       <span class="mr-3">&#10004; <i class="fas fa-door-open icon"></i> {{ accomodation.number_of_rooms }} Rooms </span>  
+       <span class="mr-3">&#10004; <i class="fas fa-bed icon"></i> {{ accomodation.number_of_beds}} Beds </span> 
+       <span class="mr-3">&#10004; <i class="fas fa-toilet icon"></i> {{ accomodation.number_of_bathrooms}} Bathrooms </span> 
+       <span class="mr-3">&#10004; <i class="fas fa-vector-square icon"></i> {{ accomodation.square_meters}} Square meters </span> 
+      </p>
+      <h5 class="pt-4 pb-4 price"><i class="fas fa-euro-sign"></i> {{ accomodation.price_per_night}} Price per night</h5>
+    
     </div>
     <div v-else>Loading...</div>
   </div>
@@ -14,6 +23,7 @@
 
 <script>
 import Axios from "axios";
+
 
 export default {
   name: "Accomodation",
@@ -32,6 +42,19 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .container {
+    text-align: center;
+    height: 72vh;
+    .price{
+      color: #ff395d;
+      font-size: 1.3rem;
+    }
+    .icon{
+      color: #ff395d;
+    }
+   
+
+  }
 
 </style>
