@@ -91,7 +91,7 @@
                 @endforeach
             </div>
 
-            <div class="visibility">
+            <div class="visibility mt-4">
                 <label>Visibility</label>
                 <input type="hidden" id="visible"  name="visible" value="0">
                 <input type="checkbox" id="visible" name="visible" value="1">
