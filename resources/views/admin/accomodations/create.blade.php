@@ -25,14 +25,8 @@
             
             <div class="form-group">
                 <label for="picture">Picture *</label>
-                <input type="file" name="picture" id="picture">
+                <input type="file" required value="{{ old('picture') }}" name="picture" id="picture">
             </div>
-
-            {{-- <div class="form-group">
-                <label for="picture">Picture *</label>
-                <input type="file" class="form-control" name="picture" id="picture" required
-                    value="{{ old('picture') }}">
-            </div> --}}
 
             <div class="form-group" required>
                 <label>Address *</label>
@@ -66,8 +60,8 @@
             </div>
 
             <div class="form-group">
-                <label for="square_meters">Square meters</label>
-                <input type="number" class="form-control" name="square_meters" min="20" id="square_meters"
+                <label for="square_meters">Square meters *</label>
+                <input type="number" class="form-control" name="square_meters" required min="20" id="square_meters"
                     value="{{ old('square_meters') }}">
             </div>
 

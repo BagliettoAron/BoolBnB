@@ -105,7 +105,7 @@ class AccomodationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate($this->getValidationRules());
+        $request->validate($this->getValidationRulesUpdate());
         $data = $request->all();
         $accomodation = Accomodation::findOrFail($id);
 
@@ -143,11 +143,27 @@ class AccomodationController extends Controller
     {
         return [
             'title' => 'required',
+            // picture required
             'picture' => 'required',
             'number_of_rooms' => 'required|integer|min:1|max:255',
             'number_of_beds' => 'required|integer|min:1|max:255',
             'number_of_bathrooms' => 'required|integer|min:0|max:255',
-            'square_meters' => 'nullable',
+            'square_meters' => 'required|integer|min:10',
+            'price_per_night' => 'required|integer|min:10',
+            'visible' => 'required|boolean'
+        ];
+    }
+
+    private function getValidationRulesUpdate()
+    {
+        return [
+            'title' => 'required',
+            // picture not required
+            'picture' => 'nullable',
+            'number_of_rooms' => 'required|integer|min:1|max:255',
+            'number_of_beds' => 'required|integer|min:1|max:255',
+            'number_of_bathrooms' => 'required|integer|min:0|max:255',
+            'square_meters' => 'required|integer|min:10',
             'price_per_night' => 'required|integer|min:10',
             'visible' => 'required|boolean'
         ];

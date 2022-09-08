@@ -26,8 +26,8 @@
             </div>
 
             <div class="form-group">
-                <label for="picture" id="label-edit">Picture *</label>
-                <input type="file" name="picture" id="picture" required>
+                <label for="picture" id="label-edit">Picture</label>
+                <input type="file" name="picture" id="picture">
                 @if ($accomodation->picture)
                     <img style="max-width: 50%" class="mb-3" src="{{ asset('storage/' . $accomodation->picture) }}" alt="">
                 @endif
@@ -68,8 +68,8 @@
             </div>
 
             <div class="form-group">
-                <label for="square_meters" id="label-edit">Square meters</label>
-                <input type="number" class="form-control" name="square_meters"  min="20" id="square_meters"
+                <label for="square_meters" id="label-edit">Square meters *</label>
+                <input type="number" class="form-control" name="square_meters" required min="10"  min="20" id="square_meters"
                     value="{{ old('square_meters') ? old('square_meters') : $accomodation->square_meters }}">
             </div>
 
