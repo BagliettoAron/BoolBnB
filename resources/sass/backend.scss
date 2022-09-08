@@ -218,3 +218,13 @@
         color: #ff395d;
     }
 }
+.w-85 {
+    width: 85%;
+}
+.card {
+    &-img-top {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+}

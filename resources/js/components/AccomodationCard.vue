@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="d-flex align-items-center flex-column">
     <div class="card">
       <div class="card-image">
         <div class="card-like">
@@ -57,7 +57,8 @@ export default {
 
   &-description {
     margin-bottom: 1.5rem;
-
+    margin-left: 1rem;
+    width: 300px;
     h6 {
       font-weight: bold;
     }

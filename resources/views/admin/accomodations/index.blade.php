@@ -3,13 +3,13 @@
 @section('content')
     <div id="index-style">
         <h2 class="mb-3">Hi {{$logged_user->name}} {{$logged_user->last_name}}! These are your accomodations</h2>
-        <div class="row row-cols-3">
+        <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
     
             @forelse ($logged_user->accomodation as $accomodation)
-                <div class="col">
+                <div class="col d-flex justify-content-center">
     
-                    <div class="card mb-5">
-                        <img style="width: 100%; height: 300px" class="card-img-top" src="{{ asset('storage/' . $accomodation->picture) }}" alt="Card image cap">
+                    <div class="card mb-5 w-85">
+                        <img class="card-img-top" src="{{ asset('storage/' . $accomodation->picture) }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ $accomodation->title }}</h5>
                             <p class="card-text">{{ $accomodation->address }}</p>
