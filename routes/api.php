@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('accomodations', 'Api\AccomodationController@index')->name('api.accomodations.index');
+Route::get('accomodation/{id}', 'Api\AccomodationController@show')->name('api.accomodation.show');
 Route::get('accomodations/search', 'Api\AccomodationController@search')->name('api.accomodations.search');
 
 Route::get('services', 'Api\ServiceController@index')->name('api.service.index');

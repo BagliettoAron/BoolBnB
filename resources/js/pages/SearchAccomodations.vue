@@ -65,7 +65,7 @@
         <!-- /Min. beds -->
     
         <!-- Services -->
-        <p class="mb-1">Check the services you need</p>
+        <!-- <p class="mb-1">Check the services you need</p>
         <div
           class="form-check"
           v-for="(service, index) in availableServices"
@@ -81,7 +81,7 @@
           <label class="form-check-label" for="services">
             {{ service.name }}
           </label>
-        </div>
+        </div> -->
         <!-- /Services -->
       
       <!-- Search button -->
@@ -123,9 +123,9 @@ export default {
       searchRadius: 20,
       nbrOfRooms: "",
       nbrOfBeds: "",
-      availableServices: [],
-      selectedServices: [],
       accomodationsInRadius: [],
+      // availableServices: [],
+      // selectedServices: [],
     };
   },
   methods: {
@@ -180,7 +180,7 @@ export default {
           // selectedServices: this.selectedServices
         }
       }).then((resp) => {
-        // console.log(resp.data.results.data);
+        console.log(this.selectedServices);
         console.log(resp.data.accomodationsInRadius);
         this.accomodationsInRadius = resp.data.accomodationsInRadius;
       });
