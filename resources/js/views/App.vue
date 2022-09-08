@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="ms_main-container">
       <Header />
       <router-view />
       <Footer />
@@ -18,5 +18,10 @@ export default {
 };
 </script>
   
-<style>
+<style lang="scss" scoped>
+  .ms_main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 </style>

@@ -56,6 +56,7 @@ header {
   .ms_title {
     color: #ff385d;
     font-size: 1.2rem;
+    margin-left: .5rem;
   }
 
   i {
