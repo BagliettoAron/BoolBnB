@@ -37,6 +37,7 @@ export default {
     Axios.get(`/api/accomodation/${this.$route.params.id}`).then((resp) => {
       // console.log(resp.data.results);
       this.accomodation = resp.data.results;
+      console.log(this.accomodation.services);
     });
   },
 };

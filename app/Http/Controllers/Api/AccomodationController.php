@@ -28,6 +28,11 @@ class AccomodationController extends Controller
         if ($accomodation->picture) {
             $accomodation->picture = url('storage/' . $accomodation->picture);
         }
+        
+        $services = $accomodation->services;
+        if ($services) {
+            $accomodation->services = $services;
+        }
 
         if($accomodation) {
             return response()->json([
