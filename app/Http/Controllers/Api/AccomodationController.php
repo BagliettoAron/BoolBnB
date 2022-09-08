@@ -17,9 +17,25 @@ class AccomodationController extends Controller
         ]);
     }
 
-    // public function show(Request $request) {
+    public function show($id) {
+        // Nel with vanno gli attributi delle tabelle collegate che ci interessano. Vedi il model per controllare che siano al singolare o al plurale (anche a logica).
+        $accomodation = Accomodation::where('id', '=', $id)->first();
+        if ($accomodation->picture) {
+            $accomodation->picture = url('storage/' . $accomodation->picture);
+        }
 
-    // }
+        if($accomodation) {
+            return response()->json([
+                'success' => true,
+                'results' => $accomodation
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'results' => 'Accomodation not found'
+            ]);
+        }
+    }
 
     public function search(Request $request)
     {
@@ -28,7 +44,8 @@ class AccomodationController extends Controller
         $radius = $request->searchRadius;
         $nbrOfRooms = $request->nbrOfRooms;
         $nbrOfBeds = $request->nbrOfBeds;
-        $services = $request->selectedServices;
+        $checkedServices = $request->selectedServices;
+        // dd($checkedServices);
 
         if (!$nbrOfRooms) {
             $nbrOfRooms = 1;
@@ -38,8 +55,10 @@ class AccomodationController extends Controller
             $nbrOfBeds = 1;
         }
 
+        // Accomodations filtered for number of rooms and beds
         $accomodations = Accomodation::where([['number_of_rooms', '>=', $nbrOfRooms], ['number_of_Beds', '>=', $nbrOfBeds]])->get();
 
+        // Accomodations in the requested radius
         $nearAccomodations = [];
 
         function degreesToRadians($degrees)
@@ -73,16 +92,21 @@ class AccomodationController extends Controller
         }
         // dd($nearAccomodations);
 
-        // if ($services) {
-        //     foreach ($nearAccomodations as $accomodation) {
+        // $filteredAccomodation = $nearAccomodations;
+
+        // if ($checkedServices) {
+        //     foreach ($nearAccomodations as $index => $accomodation) {
         //         foreach ($accomodation->services as $service) {
-        //             // echo $service->id;
-        //             // if (in_array($service, $services)) {
-        //             //     echo 'ok';
-        //             // }
-        //             dd($services);
+        //             if (in_array($service->id, $checkedServices)) {
+        //                 // dd('ok');
+        //                 unset($filteredAccomodation[$accomodation->id]);
+        //             }
         //         }
         //     }
+        //     return response()->json([
+        //         'success' => true,
+        //         'accomodationsInRadius' => $filteredAccomodation
+        //     ]);
         // }
 
         return response()->json([

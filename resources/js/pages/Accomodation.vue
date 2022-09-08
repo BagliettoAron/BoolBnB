@@ -1,15 +1,38 @@
 <template>
   <div class="container">
-    <h2>Single accomodation</h2>
+    <div v-if="accomodation">
+      <h2>{{ accomodation.title }}</h2>
+      <img
+        v-if="accomodation.picture"
+        class="card-img-top"
+        :src="accomodation.picture"
+        alt="accomodation-picture"
+      />
+    </div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 
 <script>
+import Axios from "axios";
+
 export default {
   name: "Accomodation",
-  
+  data() {
+    return {
+      accomodation: null,
+    };
+  },
+  created() {
+    // console.log(this.$route.params.id);
+    Axios.get(`/api/accomodation/${this.$route.params.id}`).then((resp) => {
+      // console.log(resp.data.results);
+      this.accomodation = resp.data.results;
+    });
+  },
 };
 </script>
 
 <style>
+
 </style>
