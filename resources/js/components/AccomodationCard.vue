@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="d-flex align-items-center flex-column">
     <div class="card">
       <img v-if="accomodation.picture" class="card-img-top" :src="accomodation.picture" alt="accomodation-picture">
       <div class="card-image">
@@ -58,7 +58,8 @@ export default {
 
   &-description {
     margin-bottom: 1.5rem;
-
+    margin-left: 1rem;
+    width: 300px;
     h6 {
       font-weight: bold;
     }
