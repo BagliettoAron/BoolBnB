@@ -40,29 +40,15 @@
         ><i class="fab fa-instagram"></i
       ></a>
 
-      <!-- Linkedin -->
-      <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #0082ca;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
-      <!-- Github -->
-      <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #333333;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-github"></i
-      ></a>
+     
+      
     </section>
     <!-- Section: Social media -->
   </div>
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3 copyright" style="background-color: white;">
+  <div class="text-center p-3 copyright" style="background-color: #f8f9fa;">
     © 2022 Copyright:
     <a href="">BoolBnB</a>
   </div>
