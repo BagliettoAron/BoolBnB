@@ -20,9 +20,10 @@
 
             <div class="form-group">
                 <label for="title">Title *</label>
-                <input type="text" class="form-control" name="title" id="title" required value="{{ old('title') }}">
+                <input type="text" class="form-control" name="title" id="title" required
+                    value="{{ old('title') }}">
             </div>
-            
+
             <div class="form-group">
                 <label for="picture">Picture *</label>
                 <input type="file" required value="{{ old('picture') }}" name="picture" id="picture">
@@ -32,12 +33,12 @@
                 <label>Address *</label>
                 <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
                     value="{{ old('address') }}">
-                <div id="suggestions-container" class="mt-2" ></div>
-                <input type="text" class="form-control d-none" name="lat" id="lat"  required
-                value="{{ old('lat') }}">
+                <div id="suggestions-container" class="mt-2"></div>
+                <input type="text" class="form-control d-none" name="lat" id="lat" required
+                    value="{{ old('lat') }}">
 
-                <input type="text" class="form-control d-none" name="lon" id="lon"  required
-                value="{{ old('lon') }}">
+                <input type="text" class="form-control d-none" name="lon" id="lon" required
+                    value="{{ old('lon') }}">
 
             </div>
 
@@ -74,10 +75,10 @@
             <div class="services">
                 <label>Services</label>
                 @foreach ($services as $service)
-                <div class="form-check">
-                    <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
-                    id="service-{{ $service->id }}"
-                    {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
+                    <div class="form-check">
+                        <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
+                            id="service-{{ $service->id }}"
+                            {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="service-{{ $service->id }}">
                             {{ $service->name }}
                         </label>
@@ -87,7 +88,7 @@
 
             <div class="visibility mt-4">
                 <label>Visibility</label>
-                <input type="hidden" id="visible"  name="visible" value="0">
+                <input type="hidden" id="visible" name="visible" value="0">
                 <input type="checkbox" id="visible" name="visible" value="1">
                 <label for="visible">visible</label>
             </div>
@@ -110,14 +111,14 @@
             resultsContainer.innerHTML = '';
             const addressQuery = document.getElementById('address').value;
             const linkApi =
-            `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
+                `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
             console.log(linkApi);
             axios.get(linkApi).then(resp => {
                 const response = resp.data.results;
                 response.forEach(element => {
                     const divElement = document.createElement('div');
                     divElement.classList.add('address-result', 'border');
-                    divElement.style.cursor= "pointer";
+                    divElement.style.cursor = "pointer";
                     divElement.innerHTML = element.address.freeformAddress;
                     document.getElementById('suggestions-container').append(divElement);
                     divElement.addEventListener('click', function() {
@@ -127,8 +128,8 @@
                         resultsContainer.innerHTML = '';
                     });
                 });
-                
+
             })
         }
-        </script>
+    </script>
 @endsection

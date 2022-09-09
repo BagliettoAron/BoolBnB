@@ -8,16 +8,19 @@
         alt="accomodation-picture"
       />
       <h4 class="mt-4">{{ accomodation.address }}</h4>
-      <p class="mt-4"> 
+      <div class="mt-4 text-center"> 
        <span class="mr-3">&#10004; <i class="fas fa-door-open icon"></i> {{ accomodation.number_of_rooms }} Rooms </span>  
        <span class="mr-3">&#10004; <i class="fas fa-bed icon"></i> {{ accomodation.number_of_beds}} Beds </span> 
        <span class="mr-3">&#10004; <i class="fas fa-toilet icon"></i> {{ accomodation.number_of_bathrooms}} Bathrooms </span> 
-       <span class="mr-3">&#10004; <i class="fas fa-vector-square icon"></i> {{ accomodation.square_meters}} Square meters </span> 
-      </p>
-      <ul>
+       <div v-if="accomodation.square_meters">
+        <span class="mr-3">&#10004; <i class="fas fa-vector-square icon"></i> {{ accomodation.square_meters}} Square meters </span> 
+       </div>
+      </div>
+      <h5 class="mt-3 text-center">Available services</h5>
+      <ul class="text-center">
         <li v-for="service in this.accomodation.services" :key="service.id">{{ service.name }}</li>
       </ul>
-      <h5 class="pt-4 pb-4 price"><i class="fas fa-euro-sign"></i> {{ accomodation.price_per_night}} Price per night</h5>
+      <h5 class="pt-3 pb-5 price"><i class="fas fa-euro-sign"></i> {{ accomodation.price_per_night}} Price per night</h5>
     
     </div>
     <div v-else>Loading...</div>
@@ -48,7 +51,7 @@ export default {
 <style lang="scss" scoped>
   .container {
     text-align: center;
-    height: 72vh;
+    // height: 72vh;
     .price{
       color: #ff395d;
       font-size: 1.3rem;
@@ -60,4 +63,8 @@ export default {
 
   }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
 </style>
