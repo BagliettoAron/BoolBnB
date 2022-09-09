@@ -10507,28 +10507,36 @@ readers do not read off random characters that represent icons */
   width: 150px;
 }
 
-#app-style a.title {
-  color: #ff395d;
+header {
+  border-bottom: 1px solid lightgray;
+  height: 80px;
+  line-height: 40px;
+  margin-bottom: 2rem;
 }
 
-#app-style a:hover {
-  color: #ff395d;
+header .ms_title {
+  color: #ff385d;
+  font-size: 1.2rem;
+  margin-left: 0.4rem;
 }
 
-#app-style i {
+header i {
   color: #ff395d;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
 }
 
 #edit-accomodations {
-  background-color: rgba(255, 57, 93, 0.3);
+  background-color: #FAF6F6;
   border-radius: 15px;
 }
 
 #edit-accomodations .title-edit {
   font-size: 35px;
   font-weight: 100;
-  font-weight: bold;
+}
+
+#edit-accomodations #suggestions-container {
+  z-index: 1;
 }
 
 #label-edit {
@@ -10591,43 +10599,30 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
 }
 
-#index-style h2 {
-  text-transform: uppercase;
-}
-
-#show-style {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 #show-style .description {
   padding-top: 2rem;
-  width: 450px;
 }
 
 #show-style .description p {
   border: 1px solid black;
   border-radius: 5px;
   padding: 0.5rem;
-  font-weight: bold;
 }
 
 #show-style .description h4 {
   border: 1px solid black;
   border-radius: 5px;
   padding: 0.5rem;
-  font-weight: bold;
 }
 
 #show-style .description h5 {
-  border: 1px solid #18c518;
+  border: 1px solid #6cdd9d;
   border-radius: 5px;
   padding: 0.5rem;
-  background-color: #18c518;
+  background-color: #c6ecd6;
 }
 
 #show-style h2 {
-  text-transform: uppercase;
   font-weight: bold;
 }
 
@@ -10653,26 +10648,45 @@ readers do not read off random characters that represent icons */
 
 #show-style .picture img {
   border-radius: 15px;
+  width: 100%;
+  height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #show-style .picture .vote i {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   color: #ff395d;
 }
 
-#create-style h2 {
-  text-transform: uppercase;
-  font-weight: bold;
+#create-style .create-accomodiatons {
+  background-color: #FAF6F6;
 }
 
 #create-style button {
   background-color: #ff395d;
   border: 1px solid #ff395d;
+  margin-left: 12px;
 }
 
 #create-style button:hover {
   background-color: #fff;
   color: #ff395d;
+}
+
+#create-style #suggestions-container {
+  z-index: 1;
+}
+
+.w-85 {
+  width: 85%;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .toast-title {

@@ -3,12 +3,7 @@
 @section('content')
     <div id="index-style">
         <h3 class="mb-4">Hi {{$logged_user->name}}! These are your accomodations</h3>
-
-
         <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
-    
-            
-            
             @forelse ($logged_user->accomodation as $accomodation)
                 <div class="col d-flex justify-content-center">
     

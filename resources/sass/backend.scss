@@ -34,22 +34,6 @@
     }
 }
 
-// APP
-// #app-style {
-//     a.title {
-//         color: #ff395d;
-//     }
-
-//     a:hover {
-//         color: #ff395d;
-//     }
-
-//     i {
-//         color: #ff395d;
-//         font-size: 1.9rem;
-//     }
-// }
-
 header {
     border-bottom: 1px solid lightgray;
     height: 80px;
@@ -66,15 +50,6 @@ header {
         color: #ff395d;
         font-size: 1.5rem;
     }
-
-    // .ms_auth {
-    //     color: rgba($color: #000000, $alpha: .5);
-
-    // }
-
-    // .ms_auth:hover {
-    //     color: #ff395d;
-    // }
 }
 
 
@@ -164,14 +139,14 @@ header {
             border: 1px solid black;
             border-radius: 5px;
             padding: .5rem;
-            font-weight: bold;
+            // font-weight: bold;
         }
 
         h4 {
             border: 1px solid black;
             border-radius: 5px;
             padding: .5rem;
-            font-weight: bold;
+            // font-weight: bold;
         }
 
         h5 {

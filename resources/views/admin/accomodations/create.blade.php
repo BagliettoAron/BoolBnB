@@ -69,7 +69,7 @@
             </div>
             <div class="col-12  col-lg-4">
                 <div class="form-group">
-                    <label for="square_meters">Square meters *</label>>
+                    <label for="square_meters">Square meters *</label>
                     <input type="number" class="form-control" name="square_meters" required min="20"
                         id="square_meters" value="{{ old('square_meters') }}">
                 </div>
@@ -99,7 +99,7 @@
             </div>
 
             <div class="visibility mt-4 col-12">
-                <label>Do you want this accomodation to be visible?</label>
+                <label>Do you want this accomodation to be available for rent?</label>
                 <br>
                 <input type="hidden" id="visible" name="visible" value="0">
                 <input type="checkbox" id="visible" name="visible" value="1">

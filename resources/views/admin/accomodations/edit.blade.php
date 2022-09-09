@@ -1,5 +1,4 @@
 @extends('layouts.dashboard')
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
 @section('content')
     <div class="container" id="edit-accomodations">
@@ -13,7 +12,7 @@
             </div>
         @endif
 
-        <h3 class="pb-4 title-edit">Edit this accomodation</h3>
+        <h3 class="py-4 title-edit">Edit this accomodation</h3>
 
         <form class="row" action="{{ route('admin.accomodations.update', ['accomodation' => $accomodation->id]) }}" method="POST" enctype="multipart/form-data">
 
@@ -32,7 +31,7 @@
                 <br>
                 <input type="file" name="picture" id="picture">
                 @if ($accomodation->picture)
-                    <img style="max-width: 50%" class="mb-3" src="{{ asset('storage/' . $accomodation->picture) }}"
+                    <img style="max-width: 50%" class="my-3" src="{{ asset('storage/' . $accomodation->picture) }}"
                         alt="">
                 @endif
             </div>
@@ -75,7 +74,7 @@
                     value="{{ old('number_of_bathrooms') ? old('number_of_bathrooms') : $accomodation->number_of_bathrooms }}">
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-4 col-md-3">
                 <label for="square_meters" id="label-edit">Square meters *</label>
                 <input type="number" class="form-control" name="square_meters" required min="10" min="20"
                     id="square_meters"
@@ -111,7 +110,7 @@
                 <label for="price_per_night" id="label-edit">Required *</label>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="btn-edit">Save changes</button>
+            <button type="submit" class="btn btn-primary m-3" id="btn-edit">Save changes</button>
         </form>
     </div>
 

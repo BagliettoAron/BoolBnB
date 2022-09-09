@@ -3,7 +3,7 @@
 @section('content')
     <div id="show-style" class="row justify-content-center">
         <div class="picture col-12 col-md-12 col-lg-6">
-            <h2 class="mb-3"><strong>{{ $this_accomodation->title }}</strong></h2>
+            <h3 class="mb-3">{{ $this_accomodation->title }}</h3>
             @if ($this_accomodation->picture)
                 <img class="mb-3" src="{{ asset('storage/' . $this_accomodation->picture) }}" alt="">
             @endif

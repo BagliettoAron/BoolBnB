@@ -49,15 +49,9 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4">
+                <nav class="col-md-2 bg-light sidebar py-4">
                     <div class="sidebar-sticky">
-                        <ul class="nav flex-column">
-                            {{-- <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('admin.home') }}">
-                                <i class="fa-solid fa-house"></i>
-                                Dashboard
-                            </a>
-                        </li> --}}
+                        <ul class="nav flex-lg-column ">
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('admin.accomodations.index') }}">
                                     <i class="fa-solid fa-house"></i>
@@ -70,13 +64,6 @@
                                     Add Accomodation
                                 </a>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link active" href="">
-                                    <i class="fa-solid fa-message"></i>
-                                    Send a message
-                                </a>
-                            </li> --}}
-
                         </ul>
 
                     </div>
