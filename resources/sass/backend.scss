@@ -226,9 +226,14 @@ header {
 
 // CREATE
 #create-style {
+.create-accomodiatons{
+    background-color: #FAF6F6;
+}
+
     button {
         background-color: #ff395d;
         border: 1px solid #ff395d;
+        margin-left: 12px;
     }
 
     button:hover {
