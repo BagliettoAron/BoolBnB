@@ -89,6 +89,9 @@ header {
         font-weight: 100;
         font-weight: bold;
     }
+    #suggestions-container {
+        z-index: 1;
+    }
 
 }
 
@@ -241,6 +244,10 @@ header {
     button:hover {
         background-color: #fff;
         color: #ff395d;
+    }
+
+    #suggestions-container {
+        z-index: 1;
     }
 }
 
