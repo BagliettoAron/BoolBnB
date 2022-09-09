@@ -16,6 +16,7 @@
         <h2 class="p-1 pb-4 title-edit">Edit this accomodation</h2>
 
         <form class="row" action="{{ route('admin.accomodations.update', ['accomodation' => $accomodation->id]) }}" method="POST" enctype="multipart/form-data">
+
             @method('PUT')
             @csrf
 
@@ -30,7 +31,8 @@
                 <br>
                 <input type="file" name="picture" id="picture">
                 @if ($accomodation->picture)
-                    <img style="max-width: 50%" class="mb-3" src="{{ asset('storage/' . $accomodation->picture) }}" alt="">
+                    <img style="max-width: 50%" class="mb-3" src="{{ asset('storage/' . $accomodation->picture) }}"
+                        alt="">
                 @endif
             </div>
 
@@ -38,7 +40,8 @@
                 <label id="label-edit">Address *</label>
                 <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
                     value="{{ old('address') ? old('address') : $accomodation->address }}">
-                <div id="suggestions-container" class="mt-2"></div>
+                <ul id="suggestions-container" class="list-group mt-2 position-absolute"></ul>
+
                 <input type="text" class="form-control d-none" name="lat" id="lat" required
                     value="{{ old('lat') ? old('lat') : $accomodation->lat }}">
 
@@ -71,19 +74,11 @@
                     value="{{ old('number_of_bathrooms') ? old('number_of_bathrooms') : $accomodation->number_of_bathrooms }}">
             </div>
 
-            <div class="col-12 col-lg-4">
-                <div class="form-group">
-                    <label for="square_meters" id="label-edit">Square meters *</label>
-                    <input type="number" class="form-control" name="square_meters" required min="10"  min="20" id="square_meters"
-                        value="{{ old('square_meters') ? old('square_meters') : $accomodation->square_meters }}">
-                </div>
-    
-                <div class="form-group">
-                    <label for="price_per_night" id="label-edit">Price *</label>
-                    <input type="number" class="form-control" name="price_per_night" required id="price_per_night"
-                        min="10"
-                        value="{{ old('price_per_night') ? old('price_per_night') : $accomodation->price_per_night }}">
-                </div>
+            <div class="form-group">
+                <label for="square_meters" id="label-edit">Square meters *</label>
+                <input type="number" class="form-control" name="square_meters" required min="10" min="20"
+                    id="square_meters"
+                    value="{{ old('square_meters') ? old('square_meters') : $accomodation->square_meters }}">
             </div>
            
 
@@ -121,31 +116,48 @@
 
     <script>
         function searchAddress() {
-            window.axios.defaults.headers.common = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            };
-            const resultsContainer = document.getElementById('suggestions-container');
-            resultsContainer.innerHTML = '';
-            const addressQuery = document.getElementById('address').value;
-            const linkApi =
-                `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
-            console.log(linkApi);
-            axios.get(linkApi).then(resp => {
-                const response = resp.data.results;
-                response.forEach(element => {
-                    const divElement = document.createElement('div');
-                    divElement.classList.add('address-result');
-                    divElement.innerHTML = element.address.freeformAddress;
-                    document.getElementById('suggestions-container').append(divElement);
-                    divElement.addEventListener('click', function() {
-                        document.getElementById('address').value = element.address.freeformAddress;
-                        document.getElementById('lat').value = element.position.lat;
-                        document.getElementById('lon').value = element.position.lon;
-                        resultsContainer.innerHTML = '';
-                    });
+            const resultsContainer = document.getElementById("suggestions-container");
+            // window.axios.defaults.headers.common = {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json',
+            // };
+            const addressQuery = document.getElementById("address").value;
+
+            if (addressQuery.length > 1) {
+                const linkApi =
+                    `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
+                axios.get(linkApi).then(resp => {
+                    this.collectAddress(resp);
+
+                })
+            } else {
+                resultsContainer.innerHTML = "";
+            }
+        }
+
+        function collectAddress(addressData) {
+            const resultsContainer = document.getElementById("suggestions-container");
+            resultsContainer.innerHTML = "";
+            const response = addressData.data.results;
+            response.forEach(element => {
+                const listItem = document.createElement("li");
+                listItem.classList.add("address-result", "border", "list-group-item");
+                listItem.style.cursor = "pointer";
+                listItem.innerHTML = element.address.freeformAddress;
+                document.getElementById("suggestions-container").append(listItem);
+                listItem.addEventListener("mouseover", () => {
+                    listItem.classList.add("active");
                 });
-            })
+                listItem.addEventListener("mouseleave", () => {
+                    listItem.classList.remove("active");
+                });
+                listItem.addEventListener("click", () => {
+                    document.getElementById("address").value = element.address.freeformAddress;
+                    document.getElementById("lat").value = element.position.lat;
+                    document.getElementById("lon").value = element.position.lon;
+                    resultsContainer.innerHTML = "";
+                });
+            });
         }
     </script>
 @endsection

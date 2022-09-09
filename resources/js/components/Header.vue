@@ -41,7 +41,10 @@
   </nav> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <router-link class="nav-link navbar-brand" href="#"  :to="{ name: 'home' }"
+        <router-link
+          class="nav-link navbar-brand"
+          href="#"
+          :to="{ name: 'home' }"
           ><div>
             <i class="fa-brands fa-airbnb"></i>
             <span class="ms_title">BoolBnB</span>
@@ -67,8 +70,12 @@
               >
             </li>
             <li class="nav-item active">
-              <router-link class="nav-link" :to="{ name: 'searchaccomodations' }"
-                >Advanced search<span class="sr-only">(current)</span></router-link
+              <router-link
+                class="nav-link"
+                :to="{ name: 'searchaccomodations' }"
+                >Advanced search<span class="sr-only"
+                  >(current)</span
+                ></router-link
               >
             </li>
           </ul>
@@ -125,6 +132,11 @@ header {
   line-height: 40px;
   margin-bottom: 2rem;
 }
+
+#navbarSupportedContent {
+  z-index: 1;
+  background-color: rgb(248, 250, 252);
+}
 .ms_title {
   color: #ff385d;
   font-size: 1.2rem;
@@ -138,10 +150,10 @@ i {
 
 .ms_authentication {
   a {
-    color: rgba($color: #000000, $alpha: .5)
+    color: rgba($color: #000000, $alpha: 0.5);
   }
   a:hover {
-      color: #ff395d;
+    color: #ff395d;
   }
 }
 </style>

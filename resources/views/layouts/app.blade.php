@@ -84,7 +84,7 @@
                       <span class="ms_title">BoolBnB</span>
                     </div>
                   </a>
-                  <button
+                  {{-- <button
                     class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
@@ -94,7 +94,7 @@
                     aria-label="Toggle navigation"
                   >
                     <span class="navbar-toggler-icon"></span>
-                  </button>
+                  </button> --}}
           
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
