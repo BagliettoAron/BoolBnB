@@ -74,13 +74,19 @@
                     value="{{ old('number_of_bathrooms') ? old('number_of_bathrooms') : $accomodation->number_of_bathrooms }}">
             </div>
 
-            <div class="form-group col-4 col-md-3">
-                <label for="square_meters" id="label-edit">Square meters *</label>
-                <input type="number" class="form-control" name="square_meters" required min="10" min="20"
-                    id="square_meters"
-                    value="{{ old('square_meters') ? old('square_meters') : $accomodation->square_meters }}">
-            </div>
-           
+            <div class="col-12 col-lg-4">
+                <div class="form-group">
+                    <label for="square_meters" id="label-edit">Square meters *</label>
+                    <input type="number" class="form-control" name="square_meters" required min="10"  min="20" id="square_meters"
+                        value="{{ old('square_meters') ? old('square_meters') : $accomodation->square_meters }}">
+                </div>
+                <div class="form-group">
+                    <label for="price_per_night" id="label-edit">Price *</label>
+                    <input type="number" class="form-control" name="price_per_night" required id="price_per_night"
+                        min="10"
+                        value="{{ old('price_per_night') ? old('price_per_night') : $accomodation->price_per_night }}">
+                </div>
+            </div>           
 
             <div class="services offset-lg-1 col-12 col-lg-4">
                 <label id="label-edit">Services</label>
