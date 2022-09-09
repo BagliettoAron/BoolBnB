@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <h2 class="pb-4">Add new accomodation</h2>
+        <h3 class="pb-4">Add new accomodation</h3>
 
         <form action="{{ route('admin.accomodations.store') }}" method="POST" enctype="multipart/form-data">
             @method('POST')
