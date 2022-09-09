@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="container" id="create-style">
+    <div class="container create-accomodiatons" id="create-style">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -14,89 +14,101 @@
 
         <h2 class="pb-4">Add new accomodation</h2>
 
-        <form action="{{ route('admin.accomodations.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="row" action="{{ route('admin.accomodations.store') }}" method="POST" enctype="multipart/form-data">
             @method('POST')
             @csrf
 
-            <div class="form-group">
+            <div class="form-group col-12">
                 <label for="title">Title *</label>
-                <input type="text" class="form-control" name="title" id="title" required value="{{ old('title') }}">
+                <input type="text" class="form-control" name="title" id="title" required
+                    value="{{ old('title') }}">
             </div>
-            
-            <div class="form-group">
+
+            <div class="form-group col-12 col-md-6 col-lg-4">
                 <label for="picture">Picture *</label>
+                <br>
                 <input type="file" required value="{{ old('picture') }}" name="picture" id="picture">
             </div>
 
-            <div class="form-group" required>
+            <div class="form-group col-12 col-md-6 col-lg-8" required>
                 <label>Address *</label>
                 <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
                     value="{{ old('address') }}">
-                <div id="suggestions-container" class="mt-2" ></div>
-                <input type="text" class="form-control d-none" name="lat" id="lat"  required
-                value="{{ old('lat') }}">
+                <div id="suggestions-container" class="mt-2"></div>
+                <input type="text" class="form-control d-none" name="lat" id="lat" required
+                    value="{{ old('lat') }}">
 
-                <input type="text" class="form-control d-none" name="lon" id="lon"  required
-                value="{{ old('lon') }}">
+                <input type="text" class="form-control d-none" name="lon" id="lon" required
+                    value="{{ old('lon') }}">
 
             </div>
 
-            <div class="form-group">
-                <label for="number_of_rooms">Number of rooms *</label>
+            <div class="form-group col-4">
+                <label class="d-none d-lg-block" for="number_of_rooms">Number of rooms *</label>
+                <label class="d-block d-lg-none" for="number_of_rooms">Rooms *</label>
                 <input type="number" class="form-control" name="number_of_rooms" required min="1" max="255"
                     id="number_of_rooms" value="{{ old('number_of_rooms') }}">
             </div>
 
-            <div class="form-group">
-                <label for="number_of_beds">Number of beds *</label>
+            <div class="form-group col-4 col-md-3 offset-md-1">
+                <label class="d-none d-lg-block" for="number_of_beds">Number of beds *</label>
+                <label class="d-block d-lg-none" for="number_of_beds"> Beds *</label>
                 <input type="number" class="form-control" name="number_of_beds" required min="1" max="255"
                     id="number_of_beds" value="{{ old('number_of_beds') }}">
             </div>
 
-            <div class="form-group">
-                <label for="number_of_bathrooms">Number of bathrooms *</label>
+            <div class="form-group col-4 col-md-3 offset-md-1">
+                <label class="d-none d-lg-block" for="number_of_bathrooms">Number of bathrooms *</label>
+                <label class="d-block d-lg-none" for="number_of_bathrooms">Bathrooms *</label>
                 <input type="number" class="form-control" name="number_of_bathrooms" required min="0" max="255"
                     id="number_of_bathrooms" value="{{ old('number_of_bathrooms') }}">
             </div>
+            <div class="col-12  col-lg-4">
+                <div class="form-group">
+                    <label for="square_meters">Square meters *</label>>
+                    <input type="number" class="form-control" name="square_meters" required min="20"
+                        id="square_meters" value="{{ old('square_meters') }}">
+                </div>
 
-            <div class="form-group">
-                <label for="square_meters">Square meters *</label>
-                <input type="number" class="form-control" name="square_meters" required min="20" id="square_meters"
-                    value="{{ old('square_meters') }}">
+                <div class="form-group">
+                    <label for="price_per_night">Price *</label>
+                    <input type="number" class="form-control" name="price_per_night" required id="price_per_night"
+                        min="10" value="{{ old('price_per_night') }}">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="price_per_night">Price *</label>
-                <input type="number" class="form-control" name="price_per_night" required id="price_per_night"
-                    min="10" value="{{ old('price_per_night') }}">
-            </div>
-
-            <div class="services">
+            <div class="services offset-lg-1 col-12 col-lg-4">
                 <label>Services</label>
-                @foreach ($services as $service)
-                <div class="form-check">
-                    <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
-                    id="service-{{ $service->id }}"
-                    {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="service-{{ $service->id }}">
-                            {{ $service->name }}
-                        </label>
-                    </div>
-                @endforeach
+                <div class="d-flex flex-column">
+                    @foreach ($services as $service)
+                        <div class="form-check">
+                            <input class="form-check-input" name="services[]" type="checkbox" value="{{ $service->id }}"
+                                id="service-{{ $service->id }}"
+                                {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="service-{{ $service->id }}">
+                                {{ $service->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
-            <div class="visibility mt-4">
-                <label>Visibility</label>
-                <input type="hidden" id="visible"  name="visible" value="0">
+            <div class="visibility mt-4 col-12">
+                <label>Do you want this accomodation to be visible?</label>
+                <br>
+                <input type="hidden" id="visible" name="visible" value="0">
                 <input type="checkbox" id="visible" name="visible" value="1">
-                <label for="visible">visible</label>
+                <label for="visible">Yes</label>
             </div>
 
-            <div class="form-group py-3">
+            <div class="form-group py-1 col-12">
                 <label for="price_per_night">Required *</label>
             </div>
+            <button type="submit" class="btn btn-primary ">Create accomodation</button>
 
-            <button type="submit" class="btn btn-primary">Create accomodation</button>
+
+
+
         </form>
     </div>
 
@@ -110,14 +122,14 @@
             resultsContainer.innerHTML = '';
             const addressQuery = document.getElementById('address').value;
             const linkApi =
-            `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
+                `https://api.tomtom.com/search/2/search/${addressQuery}.json?key=xrJRsnZQoM2oSWGgQpYwSuOSjIRcJOH7`
             console.log(linkApi);
             axios.get(linkApi).then(resp => {
                 const response = resp.data.results;
                 response.forEach(element => {
                     const divElement = document.createElement('div');
                     divElement.classList.add('address-result', 'border');
-                    divElement.style.cursor= "pointer";
+                    divElement.style.cursor = "pointer";
                     divElement.innerHTML = element.address.freeformAddress;
                     document.getElementById('suggestions-container').append(divElement);
                     divElement.addEventListener('click', function() {
@@ -127,8 +139,8 @@
                         resultsContainer.innerHTML = '';
                     });
                 });
-                
+
             })
         }
-        </script>
+    </script>
 @endsection

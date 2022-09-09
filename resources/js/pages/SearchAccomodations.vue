@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <h4 class="text-right mt-4">Search an accomodation</h4>
-    <form class="mb-5">
+    <h4 class="text-center mt-4">Search an accomodation</h4>
+    <form class="mb-5 row">
       <!-- Address filter -->
-      <div class="form-group">
+      <div class="form-group col-md-8 col-9">
         <label for="address">Search for your desired location</label>
         <input
           type="text"
@@ -21,8 +21,9 @@
       <!-- /Address filter -->
 
       <!-- Search radius -->
-      <div class="form-group">
-        <label for="radius">Maximum distance from searched point (km)</label>
+      <div class="form-group col-md-4 col-3">
+        <label class="d-none d-md-block" for="radius">Radius (km)</label>
+        <label class="d-block d-md-none" for="radius">Km</label>
         <input
           type="number"
           name="radius"
@@ -35,8 +36,9 @@
         <!-- /Search radius -->
         
         <!-- Min. rooms -->
-        <div class="form-group">
-          <label for="rooms">Minimum number of rooms</label>
+        <div class="form-group col-6">
+          <label class="d-none d-md-block" for="rooms">Minimum number of rooms</label>
+          <label class="d-block d-md-none" for="rooms">Min Rooms</label>
           <input
             type="number"
             name="rooms"
@@ -50,8 +52,9 @@
         <!-- /Min. rooms -->
     
         <!-- Min. beds -->
-        <div class="form-group">
-          <label for="beds">Minimum number of beds</label>
+        <div class="form-group col-6">
+          <label class="d-none d-md-block" for="beds">Minimum number of beds</label>
+          <label class="d-block d-md-none" for="beds">Min Beds</label>
           <input
             type="number"
             name="beds"
@@ -195,8 +198,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+  .container {
+    background-color: #FAF6F6;
+  }
+
   #suggestions-container {
     z-index: 1;
+  }
+
+  .btn-primary {
+    margin-left: 12px;
+    background-color: #ff395d;
+    border-color: #ff395d;
   }
 </style>
