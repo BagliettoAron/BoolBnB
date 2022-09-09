@@ -33,7 +33,10 @@
                 <label>Address *</label>
                 <input type="text" class="form-control" name="address" id="address" onkeyup="searchAddress()" required
                     value="{{ old('address') }}">
+
+
                 <ul id="suggestions-container" class="list-group mt-2 position-absolute"></ul>
+
                 <input type="text" class="form-control d-none" name="lat" id="lat" required
                     value="{{ old('lat') }}">
 
@@ -145,6 +148,6 @@
                     resultsContainer.innerHTML = "";
                 });
             });
-        }        
+        }      
     </script>
 @endsection
