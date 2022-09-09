@@ -83,13 +83,23 @@ export default {
         this.totalAccomodations = resp.data.results.total;
       });
     },
-
-    
   },
 };
 </script>
 
 
 <style lang="scss" scoped>
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #ff385d;
+  border-color: #ff385d;
+}
 
+.page-link {
+  color: #282828;
+}
+
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 52, 108, 0.25);
+}
 </style>
