@@ -2540,13 +2540,18 @@ var render = function render() {
   return _c("div", {
     staticClass: "container"
   }, [_vm.accomodation ? _c("div", [_c("h2", {
-    staticClass: "accomodationTitle"
-  }, [_vm._v(_vm._s(_vm.accomodation.title))]), _vm._v(" "), _vm.accomodation.picture ? _c("img", {
+    staticClass: "accomodationTitle mb-5"
+  }, [_vm._v(_vm._s(_vm.accomodation.title))]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_vm.accomodation.picture ? _c("img", {
+    staticClass: "col-12 col-md-6",
     attrs: {
       src: _vm.accomodation.picture,
       alt: "accomodation-picture"
     }
-  }) : _vm._e(), _vm._v(" "), _c("h4", {
+  }) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-md-6"
+  }, [_c("h4", {
     staticClass: "mt-4"
   }, [_vm._v(_vm._s(_vm.accomodation.address))]), _vm._v(" "), _c("div", {
     staticClass: "mt-4 text-center"
@@ -2578,7 +2583,7 @@ var render = function render() {
     staticClass: "pt-3 pb-5 price"
   }, [_c("i", {
     staticClass: "fas fa-euro-sign"
-  }), _vm._v(" " + _vm._s(_vm.accomodation.price_per_night) + " Price per night")])]) : _c("div", [_vm._v("Loading...")])]);
+  }), _vm._v(" " + _vm._s(_vm.accomodation.price_per_night) + " Price per night")])])])]) : _c("div", [_vm._v("Loading...")])]);
 };
 
 var staticRenderFns = [];
@@ -8648,7 +8653,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container[data-v-65eb1e6c] {\n  text-align: center;\n}\n.container .price[data-v-65eb1e6c] {\n  color: #ff395d;\n  font-size: 1.3rem;\n}\n.container .icon[data-v-65eb1e6c] {\n  color: #ff395d;\n}\nul[data-v-65eb1e6c] {\n  list-style: none;\n  padding: 0;\n}", ""]);
+exports.push([module.i, ".container[data-v-65eb1e6c] {\n  text-align: center;\n}\n.container img[data-v-65eb1e6c] {\n  max-height: 50vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.container .price[data-v-65eb1e6c] {\n  color: #ff395d;\n  font-size: 1.3rem;\n}\n.container .icon[data-v-65eb1e6c] {\n  color: #ff395d;\n}\nul[data-v-65eb1e6c] {\n  list-style: none;\n  padding: 0;\n}", ""]);
 
 // exports
 

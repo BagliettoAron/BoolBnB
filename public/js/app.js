@@ -115,8 +115,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/lorenzo/Documenti/Boolean/progetto-finane/BoolBnB/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/lorenzo/Documenti/Boolean/progetto-finane/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Corso Boolean\Desktop\BoolBnB\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Corso Boolean\Desktop\BoolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
